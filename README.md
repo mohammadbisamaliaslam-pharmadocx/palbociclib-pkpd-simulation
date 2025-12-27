@@ -38,38 +38,18 @@ Palbociclib exhibits nonlinear pharmacokinetics, drug-drug interactions (CYP3A4 
 
 ## Repository Structure
 
-palbociclib-pkpd-simulation/
-│
-├── README.md # This file
-├── LICENSE # MIT License
-│
-├── data/
-│ ├── palbociclib_pk_literature.csv # Published PK parameters
-│ ├── paloma_trial_summary.csv # PALOMA trial reference data
-│ └── README_data.md # Data source documentation
-│
-├── scripts/
-│ ├── 01_model_setup.R # PK/PD model structure & parameters
-│ ├── 02_simulation.R # Run population simulations
-│ ├── 03_visualization.R # Plotting PK/PD profiles
-│ ├── 04_sensitivity_analysis.R # Parameter uncertainty & robustness
-│ ├── 05_validation.R # Compare to trial data
-│ └── utils_functions.R # Helper functions
-│
-├── outputs/
-│ ├── pk_profiles.pdf # PK time-concentration curves
-│ ├── pd_relationships.pdf # Dose-response plots
-│ ├── sensitivity_tornado.pdf # Sensitivity analysis tornado plot
-│ ├── simulation_results.csv # Compiled simulation outputs
-│ └── validation_report.pdf # Model vs. clinical data comparison
-│
-├── docs/
-│ ├── model_equations.pdf # Mathematical model specification
-│ ├── assumptions.md # Model assumptions & limitations
-│ └── references.bib # BibTeX bibliography
-│
-└── renv.lock # R dependency manifest
-
+| Folder/File | Purpose |
+|-------------|---------|
+| `data/` | Raw data (PK parameters, trial data) |
+| `scripts/` | R analysis code (**6 modular scripts**) |
+| `outputs/` | Results (PDF plots, CSV data) |
+| `docs/` | Documentation (equations, **references.bib**) |
+| `01_model_setup.R` | PK parameters + model functions |
+| `02_simulation.R` | **TDM simulation engine** |
+| `03_visualization.R` | Publication-quality plots |
+| `04_sensitivity_analysis.R` | Parameter uncertainty analysis |
+| `05_validation.R` | Trial data comparison |
+| `renv.lock` | Reproducible R environment |
 
 
 ---
