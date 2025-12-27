@@ -37,11 +37,11 @@ Palbociclib exhibits nonlinear pharmacokinetics, drug-drug interactions (CYP3A4 
 ---
 
 ## Repository Structure
-palbociclib-pkpd-simulation/
+
+'''palbociclib-pkpd-simulation/
 │
 ├── README.md # This file
 ├── LICENSE # MIT License
-├── CITATION.cff # Citation metadata
 │
 ├── data/
 │ ├── palbociclib_pk_literature.csv # Published PK parameters
@@ -54,7 +54,7 @@ palbociclib-pkpd-simulation/
 │ ├── 03_visualization.R # Plotting PK/PD profiles
 │ ├── 04_sensitivity_analysis.R # Parameter uncertainty & robustness
 │ ├── 05_validation.R # Compare to trial data
-│ └── utils_functions.R # Helper functions (unit conversions, etc.)
+│ └── utils_functions.R # Helper functions
 │
 ├── outputs/
 │ ├── pk_profiles.pdf # PK time-concentration curves
@@ -68,7 +68,9 @@ palbociclib-pkpd-simulation/
 │ ├── assumptions.md # Model assumptions & limitations
 │ └── references.bib # BibTeX bibliography
 │
-└── renv.lock # R dependency manifest (reproducibility)
+└── renv.lock # R dependency manifest'''
+
+
 
 ---
 
