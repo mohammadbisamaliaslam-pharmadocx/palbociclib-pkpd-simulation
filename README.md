@@ -14,7 +14,7 @@ This repository contains R code for a population pharmacokinetic/pharmacodynamic
 2. **Simulate dose-exposure-response** across patient populations (weight, age, organ function variations)
 3. **Validate against clinical trial data** (e.g., PALOMA trials)
 4. **Create publication-quality visualization** and sensitivity analysis
-5. **Demonstrate R proficiency** in pharmacometric modeling for PhD applications
+5. **Demonstrate R proficiency** in pharmacometric modeling 
 
 ---
 
@@ -253,7 +253,7 @@ This project was developed under the mentorship of **Dr. Zubair Anwar** as part 
 1. **Open an Issue** on GitHub (describe problem + expected behavior)
 2. **Provide data**: Share minimal reproducible example if bug-related
 
-**Author & Maintainer**: Mohammad Bisam Ali Aslam
+**Author & Maintainer**: Mohammad Bisam Ali Aslam, pharmD
 
 ---
 
@@ -267,11 +267,19 @@ This project is licensed under the **MIT License** – see `LICENSE` file for de
 
 ## References
 
-Key publications informing this model:
+Key publications informing this TDM simulation model:
 
-- Jalali et al. (2022). "A Population Pharmacokinetic/Pharmacodynamic Analysis of Palbociclib in Hormone Receptor–Positive, HER2-Negative Advanced Breast Cancer..." *Clinical Pharmacology & Therapeutics*, XX(X), XXX–XXX.
-- FDA Pharmacology Review for Ibrance (palbociclib) – [Link to FDA CDER review]
-- Chen et al. (2024). "CDK4/6 Inhibitor Pharmacodynamics in Cancer..." *Journal of Clinical Oncology*.
+### Population PK Parameters (CL/F=63 L/h, V/F=2710 L)
+- Royer, B., et al. (2021). "Population Pharmacokinetics of Palbociclib in a Real-World Setting." *Cancers*, 13(5), 1006. [PMC Full Text](https://pmc.ncbi.nlm.nih.gov/articles/PMC7996283/) [web:56]
+- European Medicines Agency (2020). "Ibrance (palbociclib) EPAR - Product Information." Geometric mean CL/F = 63 L/h. [EMA PDF](https://ec.europa.eu/health/documents/community-register/2020/20200213147046/anx_147046_en.pdf) [web:90]
+- Pfizer Medical Information (2018). "IBRANCE® (palbociclib) Fact Sheet." CL/F = 63.1 L/hr (29% CV). [Pfizer ASCO](https://cdn.pfizer.com/pfizercom/news/asco/IBRANCE(palbociclib)_Fact_Sheet_16MAY2018.pdf) [web:92]
+
+### TDM & Neutropenia Exposure-Response
+- Leenhardt, E., et al. (2022). "Pharmacokinetic Variability Drives Palbociclib-Induced Neutropenia: Interest of Therapeutic Drug Monitoring Proposal." *Therapeutic Drug Monitoring*, 44(4), 567-575. TDM target: Cmin 40-100 ng/mL. [PMC Full Text](https://pmc.ncbi.nlm.nih.gov/articles/PMC9032884/) [web:91]
+- Courlet, M., et al. (2022). "Population Pharmacokinetics of Palbociclib and Its Correlation with Neutropenia in Patients with HR+/HER2− Metastatic Breast Cancer." *Clinical Pharmacology & Therapeutics*, 112(6), 1320-1331. [PMC Full Text](https://pmc.ncbi.nlm.nih.gov/articles/PMC9322950/) [web:67]
+
+### Economic & Clinical Validation
+- U.S. Food and Drug Administration (2022). "IBRANCE® (palbociclib) Prescribing Information." Neutropenia incidence: 66% Grade ≥3. [FDA Label](https://www.accessdata.fda.gov/drugsatfda_docs/label/2022/207103s015lbl.pdf) [web:98]
 
 **Full bibliography**: See `docs/references.bib`
 
