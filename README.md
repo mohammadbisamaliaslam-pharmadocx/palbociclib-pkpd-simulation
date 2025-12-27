@@ -270,18 +270,19 @@ This project is licensed under the **MIT License** – see `LICENSE` file for de
 Key publications informing this TDM simulation model:
 
 ### Population PK Parameters (CL/F=63 L/h, V/F=2710 L)
-- Royer, B., et al. (2021). "Population Pharmacokinetics of Palbociclib in a Real-World Setting." *Cancers*, 13(5), 1006. [PMC Full Text](https://pmc.ncbi.nlm.nih.gov/articles/PMC7996283/) [web:56]
-- European Medicines Agency (2020). "Ibrance (palbociclib) EPAR - Product Information." Geometric mean CL/F = 63 L/h. [EMA PDF](https://ec.europa.eu/health/documents/community-register/2020/20200213147046/anx_147046_en.pdf) [web:90]
-- Pfizer Medical Information (2018). "IBRANCE® (palbociclib) Fact Sheet." CL/F = 63.1 L/hr (29% CV). [Pfizer ASCO](https://cdn.pfizer.com/pfizercom/news/asco/IBRANCE(palbociclib)_Fact_Sheet_16MAY2018.pdf) [web:92]
+- Royer, B., et al. (2021). "Population Pharmacokinetics of Palbociclib in a Real-World Setting." *Cancers*, 13(5), 1006. [PMC Full Text](https://pmc.ncbi.nlm.nih.gov/articles/PMC7996283/)
+- European Medicines Agency (2020). "Ibrance (palbociclib) EPAR - Product Information." Geometric mean CL/F = 63 L/h. [EMA PDF](https://ec.europa.eu/health/documents/community-register/2020/20200213147046/anx_147046_en.pdf)
+- Pfizer Medical Information (2018). "IBRANCE® (palbociclib) Fact Sheet." CL/F = 63.1 L/hr (29% CV). [Pfizer ASCO](https://cdn.pfizer.com/pfizercom/news/asco/IBRANCE(palbociclib)_Fact_Sheet_16MAY2018.pdf)
 
 ### TDM & Neutropenia Exposure-Response
-- Leenhardt, E., et al. (2022). "Pharmacokinetic Variability Drives Palbociclib-Induced Neutropenia: Interest of Therapeutic Drug Monitoring Proposal." *Therapeutic Drug Monitoring*, 44(4), 567-575. TDM target: Cmin 40-100 ng/mL. [PMC Full Text](https://pmc.ncbi.nlm.nih.gov/articles/PMC9032884/) [web:91]
-- Courlet, M., et al. (2022). "Population Pharmacokinetics of Palbociclib and Its Correlation with Neutropenia in Patients with HR+/HER2− Metastatic Breast Cancer." *Clinical Pharmacology & Therapeutics*, 112(6), 1320-1331. [PMC Full Text](https://pmc.ncbi.nlm.nih.gov/articles/PMC9322950/) [web:67]
+- Leenhardt, E., et al. (2022). "Pharmacokinetic Variability Drives Palbociclib-Induced Neutropenia: Interest of Therapeutic Drug Monitoring Proposal." *Therapeutic Drug Monitoring*, 44(4), 567-575. TDM target: Cmin 40-100 ng/mL. [PMC Full Text](https://pmc.ncbi.nlm.nih.gov/articles/PMC9032884/)
+- Courlet, M., et al. (2022). "Population Pharmacokinetics of Palbociclib and Its Correlation with Neutropenia in Patients with HR+/HER2− Metastatic Breast Cancer." *Clinical Pharmacology & Therapeutics*, 112(6), 1320-1331. [PMC Full Text](https://pmc.ncbi.nlm.nih.gov/articles/PMC9322950/)
 
 ### Economic & Clinical Validation
-- U.S. Food and Drug Administration (2022). "IBRANCE® (palbociclib) Prescribing Information." Neutropenia incidence: 66% Grade ≥3. [FDA Label](https://www.accessdata.fda.gov/drugsatfda_docs/label/2022/207103s015lbl.pdf) [web:98]
+- U.S. Food and Drug Administration (2022). "IBRANCE® (palbociclib) Prescribing Information." Neutropenia incidence: 66% Grade ≥3. [FDA Label](https://www.accessdata.fda.gov/drugsatfda_docs/label/2022/207103s015lbl.pdf)
 
 **Full bibliography**: See `docs/references.bib`
+
 
 ---
 
@@ -289,7 +290,8 @@ Key publications informing this TDM simulation model:
 
 **Questions about the model?**
 - Email: mohammadbisamaliaslam@gmail.com
-- GitHub Issues: -
+- GitHub Issues: [https://github.com/mohammadbisamaliaslam-pharmadocx/palbociclib-pkpd-simulation/issues](https://github.com/mohammadbisamaliaslam-pharmadocx/palbociclib-pkpd-simulation/issues)
+
 
 **Last updated**: January 2026
 **Repository last modified**: [Auto-updates with each commit]
