@@ -38,7 +38,7 @@ Palbociclib exhibits nonlinear pharmacokinetics, drug-drug interactions (CYP3A4 
 
 ## Repository Structure
 
-'''palbociclib-pkpd-simulation/
+palbociclib-pkpd-simulation/
 │
 ├── README.md # This file
 ├── LICENSE # MIT License
@@ -68,7 +68,7 @@ Palbociclib exhibits nonlinear pharmacokinetics, drug-drug interactions (CYP3A4 
 │ ├── assumptions.md # Model assumptions & limitations
 │ └── references.bib # BibTeX bibliography
 │
-└── renv.lock # R dependency manifest'''
+└── renv.lock # R dependency manifest
 
 
 
