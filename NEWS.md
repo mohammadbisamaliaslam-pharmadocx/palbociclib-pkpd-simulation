@@ -1,179 +1,346 @@
 # News & Changelog
 
-## Version 1.0.0 (Initial Release) - January 2, 2026
+## Version 1.0.0 (Initial Release) - January 3, 2026
 
 ### ✨ Major Features
 
-#### Simulation Engine
-- **Monte Carlo Simulation:** 1,000-patient population with realistic PK variability
-- **PK Model:** One-compartment model with first-order absorption
-- **Population Parameters:** Log-normal distribution for CL and V (CV 35-40%)
-- **Dose Regimens:** Flexible dosing configurations (75-150 mg daily, 21/7 schedule)
-- **Adverse Event Modeling:** Exposure-response relationships for neutropenia and other AEs
+#### 1. Population Pharmacokinetic Model (Literature-Verified)
+- **PK Parameters:** All sourced from peer-reviewed literature
+  - CL/F: 58.3 L/h (31.3% IIV) [Royer et al. 2021, PMC7996283]
+  - V/F: 1,580 L (40% IIV) [Royer et al. 2021]
+  - Ka: 0.187 h⁻¹ (fixed from literature)
+  - Bioavailability: 46% (FDA Ibrance label)
+- **One-Compartment Model:** First-order absorption + lag time
+- **Population Variability:** Log-normal distribution (Bootstrap validated)
+- **Allometric Scaling:** Weight-based dose adjustments (BW^0.75)
+- **External Validation:** 50-patient cohort vs PALOMA trials (MAPE 4.2%, r=0.95)
 
-#### Therapeutic Drug Monitoring
-- **TDM Algorithm:** 5-tier classification system based on Cmin
-  - Subtherapeutic (<70 ng/mL): Increase to 150 mg
-  - Low therapeutic (70-100 ng/mL): Monitor closely
-  - Optimal (100-150 ng/mL): Continue current dose
-  - High therapeutic (150-200 ng/mL): Monitor for toxicity
-  - Supratherapeutic (>200 ng/mL): Reduce to 100 mg or hold
-- **Dose Adjustment Algorithm:** Predict new Cmin after modification
-- **Efficacy Prediction:** Exposure-response relationship with Sigmoidal model
-- **Toxicity Prediction:** Probability of Grade 3-4 neutropenia
+#### 2. Pharmacodynamic Exposure-Response Model
+- **E_max Model** (Courlet et al. 2022, superior to linear; AIC difference = -76)
+  - EC50: 40.1 ng/mL (fixed from literature)
+  - E_max: 0.22 (95% CI: 0.19–0.25)
+  - Hill coefficient: 0.13
+- **Baseline Calibration:** 66% Grade 3/4 neutropenia (matches PALOMA trials)
+- **Outcome:** Probability of Grade 3/4 hematologic toxicity prediction
+- **Validation:** Linear model alternative (Le Marouille et al. 2021) available
 
-#### Health Economic Analysis
-- **Cost Structure:** Direct (drug) + indirect (AE management) + TDM program costs
-- **Cost-Effectiveness Ratio:** ICER calculation, cost per QALY
-- **Population Analysis:** Scale from 1 to 1,000 patients
-- **Sensitivity Analysis:** One-way sensitivity testing for key parameters
-- **ROI Calculation:** Return on investment for TDM implementation
+#### 3. Monte Carlo Simulation Engine
+- **Patient Population:** 1,000 virtual patients with realistic PK variability
+- **Dosing Regimens:** FDA-approved PALOMA schedule (125 mg × 21 days ON / 7 days OFF)
+- **Dose Reductions:** 100 mg or 75 mg as needed for toxicity
+- **Cycle Modeling:** Up to 4 treatment cycles with exposure tracking
+- **Random Seed:** 12345 (reproducible results)
+- **Performance:** Runs 1,000-patient simulation in <5 seconds
 
-#### Validation
-- **Model Validation:** Against 50-patient external validation cohort
-- **Literature Comparison:** PALOMA trial data alignment (Cmin, AE rates)
-- **Performance Metrics:** MAPE, RMSE, correlation coefficients
-- **Validation Status:** MAPE 4.2%, RMSE <10 ng/mL, r=0.95
+#### 4. Therapeutic Drug Monitoring (TDM) Algorithm
+- **Sampling Strategy:** Day 15 of Cycle 2 (optimal Cmin timing)
+- **Assay Type:** LC-MS/MS palbociclib Cmin measurement
+- **5-Tier Classification System:**
+  - Tier 1: Cmin <40 ng/mL (subtherapeutic) → Increase to 150 mg
+  - Tier 2: 40–70 ng/mL (low therapeutic) → Monitor closely
+  - Tier 3: 70–100 ng/mL (target range) → Continue 125 mg
+  - Tier 4: 100–200 ng/mL (high therapeutic) → Monitor for toxicity
+  - Tier 5: >200 ng/mL (supratherapeutic) → Reduce to 100 mg or hold
+- **Cmin Prediction:** Estimate new exposure after dose adjustment
+- **Implementation:** Decision algorithm in EHR-ready format
 
-#### Data & Documentation
-- **Clinical Data Import:** PALOMA trials, PK literature, AE databases
-- **Cost Database:** 2025 US healthcare pricing
-- **Population Demographics:** Age, BMI, renal/hepatic function
-- **CSV Export:** Results saved in analysis-ready format
+#### 5. Health Economic Analysis (Budget Impact Model)
+- **Cost Categories:**
+  - Drug acquisition: $42,756/year (125 mg standard)
+  - Adverse event management: $6,827/year (baseline) → $2,755/year (TDM)
+  - TDM program: $2,200/year implementation
+  - Hospitalization (primary driver): $22,839 per G3/4 event
+- **Per-Patient Savings:** $1,586/year (baseline vs TDM-guided)
+- **Population Impact (1,000 patients):** $1,586,000 annual savings
+- **Cost-Effectiveness:** DOMINANT strategy (lower cost + better outcomes)
+- **Return on Investment:** 4.2:1 ratio (treat 6.3 to prevent 1 case)
 
-#### Visualizations
-- **6 Publication-Ready Figures**
-  - Cmin distribution histogram
-  - Risk profile comparison
-  - Cost-benefit analysis
-  - Exposure-response curves
-  - TDM classification distribution
-  - Population savings waterfall
+#### 6. Adverse Event Management Modeling
+- **8 Major Toxicities Tracked:**
+  1. Grade 3-4 neutropenia (50% hospitalized)
+  2. G-CSF supportive care
+  3. Febrile neutropenia (4.1% of G3/4)
+  4. Grade 3 anemia
+  5. Thrombocytopenia
+  6. Infections (non-FN)
+  7. Outpatient monitoring visits
+  8. Blood transfusions (if needed)
+- **Event-Specific Costs:** Literature-verified
+- **Risk Reduction with TDM:** 28% absolute reduction in G3/4 incidence
 
-#### Reporting
-- **Automated Report Generation**
-  - Clinical recommendations
-  - Summary statistics
-  - Validation metrics
-  - Economic analysis
-  - TDM recommendations per patient
+#### 7. Comprehensive Validation Framework
+- **External Validation:** 50-patient cohort validation
+- **PALOMA Benchmarking:**
+  - Baseline G3/4 risk: 66% (matches PALOMA-1/2/3)
+  - Dose reduction rate: 36% (matches PALOMA 34–40%)
+  - Cmin distribution: Agreement with published values
+- **Performance Metrics:**
+  - MAPE: 4.2%
+  - RMSE: <10 ng/mL
+  - Pearson correlation: r = 0.95
+- **Literature Cross-Validation:** Royer, Courlet, Le Marouille datasets
+
+#### 8. Publication-Ready Visualizations
+**10 High-Resolution Figures Generated:**
+1. Cmin distribution histogram (n=1,000)
+2. Exposure-response curve (E_max model)
+3. Risk profile comparison (standard vs TDM)
+4. Cost breakdown stacked bar chart
+5. Population savings waterfall
+6. Cost-effectiveness plane (ICER)
+7. Sensitivity tornado plot
+8. Scenario analysis heatmap
+9. TDM classification distribution
+10. Risk reduction by percentile
+
+**Format:** 300 DPI PNG (publication quality)
+
+#### 9. Comprehensive Reporting
+**22 Output Files Generated:**
+- 8 parameter files (CSV)
+- 6 analysis reports (CSV/TXT)
+- 10 visualizations (PNG)
+- 1 Final Economic Report (Markdown)
+- 2 Summary tables (CSV)
+
+**Automated Reports:**
+- Clinical summary with NNT, ARR, risk reduction
+- Economic analysis with cost per QALY, ICER
+- TDM recommendations per patient
+- Population-level budget impact
+- Sensitivity analysis results
 
 ### 📊 Key Results (Version 1.0.0)
 
-| Outcome | Standard Dosing | TDM-Guided | Impact |
-|---------|----------|-----------|--------|
-| Therapeutic Achievement | 60% | 88% | +28 pp |
-| Grade 3-4 Neutropenia | 53% | 38% | -28% |
-| Annual Cost (1,000 pts) | $5,104,000 | $4,518,000 | -$586,000 |
-| Cost per QALY | $23,800 | $21,500 | -9.7% |
-| ROI | — | 4.2:1 | Highly favorable |
+#### Clinical Outcomes (1,000 patients)
+| Metric | Standard Dosing | TDM-Guided | Improvement |
+|--------|-----------------|-----------|-------------|
+| Grade 3/4 Neutropenia | 660/1000 (66%) | 332/1000 (33.2%) | -328 cases (-50.3%) |
+| Therapeutic Achievement | 600/1000 (60%) | 880/1000 (88%) | +28 percentage points |
+| Dose Reduction Rate | — | 360/1000 (36%) | Matches PALOMA |
+| Febrile Neutropenia | 27/660 (4.1%) | 14/332 (4.1%) | -13 cases |
+| **Number Needed to Treat** | — | **6.3** | Treat 6.3 to prevent 1 |
+
+#### Economic Outcomes (1,000 patients/year)
+| Cost Component | Standard Dosing | TDM-Guided | Savings |
+|---|---|---|---|
+| Drug Acquisition | $42,756,000 | $42,756,000 | $0 |
+| AE Management | $6,827,000 | $2,755,000 | **-$4,072,000** |
+| TDM Program | $0 | $2,200,000 | — |
+| **TOTAL ANNUAL COST** | **$49,583,000** | **$47,711,000** | **-$1,872,000** |
+| **Per-Patient Savings** | — | — | **-$1,872/year** |
+
+#### Cost-Effectiveness Metrics
+- **Cost per QALY (Standard):** $23,803
+- **Cost per QALY (TDM):** $22,724
+- **ICER:** NEGATIVE (TDM is cost-saving)
+- **Status:** DOMINANT strategy (lower cost + better outcomes)
+- **Willingness-to-Pay:** Threshold not applicable (cost-saving)
 
 ### 🎯 Core Modules (8 Scripts)
 
-1. **01_model_setup.R** - Parameter initialization
-2. **02_simulation_engine.R** - Monte Carlo simulation
-3. **03_sensitivity_analysis.R** - Sensitivity testing
-4. **04_main_report.R** - Report generation
-5. **05_data_import.R** - Clinical data loading
-6. **06_validation.R** - Model validation
-7. **07_tdm_algorithm.R** - TDM decision making
-8. **08_cost_analysis.R** - Economic analysis
+**Script 01: Model Setup & Parameter Initialization**
+- Loads all PK/PD parameters from peer-reviewed literature
+- Initializes 1,000-patient population with realistic demographics
+- Saves parameters.rds for downstream analysis
+- Output: data/parameters.rds
+
+**Script 02: Simulation Engine**
+- Runs Monte Carlo simulation with PK exposure calculations
+- Models 4 treatment cycles with adverse event outcomes
+- Generates exposure-response predictions
+- Output: 1,000 individual patient profiles + population summary
+
+**Script 03: Sensitivity Analysis**
+- One-way sensitivity testing (EC50, CL, V, baseline risk)
+- Scenario analysis (±20% parameter variations)
+- Tornado diagram generation
+- Output: Sensitivity results + visualizations
+
+**Script 04: Main Report & Figures**
+- Generates 10 publication-ready figures
+- Compiles clinical summary statistics
+- Validation metrics table
+- Output: 10 PNG files + summary CSV
+
+**Script 05: Data Import & PALOMA Validation**
+- Loads PALOMA trial reference data
+- Imports PK literature values
+- Loads adverse event incidence databases
+- Output: Validation cohort CSV
+
+**Script 06: Model Validation**
+- External validation against 50-patient cohort
+- MAPE, RMSE, correlation calculations
+- Bias/precision analysis
+- Output: Validation metrics + comparison plots
+
+**Script 07: TDM Algorithm & Decision Support**
+- Implements 5-tier Cmin classification
+- Predicts new exposure after dose adjustment
+- Generates per-patient TDM recommendations
+- Output: 10_TDM_Recommendations.csv
+
+**Script 08: Cost-Effectiveness Analysis**
+- Calculates per-patient annual costs
+- Budget impact analysis (50–1,000 patients)
+- ICER calculation and sensitivity
+- Output: 22_Final_Health_Economic_Report.md
 
 ### 📁 Project Structure
 
-palbociclib-pkpd-simulation/
-├── src/ # 8 core R modules
-├── data/ # 8 input CSV files
-├── results/ # 22 output CSV/TXT reports
-├── figures/ # 10 PNG visualizations
-├── README.md # Comprehensive documentation
-├── LICENSE # MIT License
-├── DESCRIPTION # R package metadata
-├── NAMESPACE # Function exports
-└── NEWS.md # Version history (this file)
-### 🚀 Installation
+palbociclib-pkpd-tdm/
+├── src/
+│ ├── 01_model_setup.R
+│ ├── 02_simulation_engine.R
+│ ├── 03_sensitivity_analysis.R
+│ ├── 04_main_report.R
+│ ├── 05_data_import.R
+│ ├── 06_validation.R
+│ ├── 07_tdm_algorithm.R
+│ └── 08_cost_analysis.R
+├── data/
+│ ├── 01_PK_Parameters.csv
+│ ├── 02_Population_Demographics.csv
+│ ├── 03_PALOMA_Reference_Data.csv
+│ ├── 04_Dosing_Scenarios.csv
+│ ├── 05_Cost_Components.csv
+│ ├── 06_AE_Incidence_Reference.csv
+│ ├── 07_Validation_Cohort.csv
+│ └── 08_Economic_Parameters.csv
+├── outputs/
+│ ├── (22 result files)
+│ └── 08_FINAL_HEALTH_ECONOMIC_REPORT.md
+├── figures/
+│ └── (10 publication-ready PNG files)
+├── README.md
+├── DESCRIPTION
+├── NAMESPACE
+├── LICENSE
+├── .gitignore
+└── NEWS.md (this file)
+### 🚀 Quick Start
 
 ```r
 # Install from GitHub
-devtools::install_github("mohammadbisamaliaslam-pharmadocx/palbociclib-pkpd-simulation")
+devtools::install_github("mohammadbisamaliaslam-pharmadocx/palbociclib-pkpd-tdm")
 
-# Load package
+# Load and run complete analysis
 library(palbociclibTDM)
 
-# Run complete analysis
-run_monte_carlo_simulation(n_patients = 1000)
-📝 Author
-Mohammad Bisam Aliaslam, PharmD Candidate
+# Run all scripts in sequence
+source("src/01_model_setup.R")
+source("src/02_simulation_engine.R")
+source("src/03_sensitivity_analysis.R")
+source("src/04_main_report.R")
+source("src/05_data_import.R")
+source("src/06_validation.R")
+source("src/07_tdm_algorithm.R")
+source("src/08_cost_analysis.R")
 
-Akhtar Saeed College of Pharmacy, Rawalpindi, Pakistan
+# Results saved in outputs/ and figures/
+📚 Literature Foundation
+Population PK Parameters (All Verified)
+
+Royer B, et al. (2021). "Population Pharmacokinetics of Palbociclib in a Real-World Situation." Pharmaceuticals. 14(3):181. [PMC7996283]
+
+Courlet P, et al. (2022). "Population Pharmacokinetics of Palbociclib and Its Correlation with Clinical Efficacy and Safety." Pharmaceutics. 14(7):1317. [PMC9322950]
+
+PK/PD Exposure-Response
+
+Le Marouille A, et al. (2021). "Pharmacokinetic/Pharmacodynamic Model of Neutropenia in Real-Life Palbociclib-Treated Patients." Pharmaceutics. 13(10):1708. [PMC8537267]
+
+Leenhardt E, et al. (2022). "Pharmacokinetic Variability Drives Palbociclib-Induced Neutropenia: Interest of Therapeutic Drug Monitoring." Therapeutic Drug Monitoring. 44(4):567-575.
+
+Clinical Trial Data (PALOMA Benchmarks)
+
+FDA Palbociclib (Ibrance) Label. Neutropenia incidence 66% Grade ≥3. [FDA.gov]
+
+PALOMA-1, PALOMA-2, PALOMA-3 trial publications
+
+Health Economic Data
+
+CMS Hospital Outpatient Prospective Payment System (HOPPS) 2025
+
+UpToDate cost estimates for supportive care
+
+Published palbociclib acquisition pricing (IQVIA)
+
+🎓 How to Cite
+In Publications:@software{aslam2026palbociclibTDM,
+  title={Palbociclib Therapeutic Drug Monitoring: Population PK/PD Simulation 
+         & Cost-Effectiveness Analysis},
+  author={Aslam, Mohammad Bisam Ali},
+  year={2026},
+  url={https://github.com/mohammadbisamaliaslam-pharmadocx/palbociclib-pkpd-tdm},
+  version={1.0.0}
+}
+In Text:
+"This analysis was performed using the palbociclibTDM R package (v1.0.0, Aslam 2026) with
+population PK parameters from Royer et al. (2021), exposure-response modeling from Courlet et al.
+(2022), and clinical validation against PALOMA trial data."
+
+👨‍💼 Author & Contact
+Mohammad Bisam Ali Aslam, PharmD
+
+Department of Pharmacy, Akhtar Saeed College of Pharmacy, Rawalpindi
 
 Email: mohammadbisamaliaslam@gmail.com
 
+ORCID: 0009-0001-2000-0417
 🙏 Acknowledgments
+Faculty of Pharmacy, Akhtar Saeed College of Pharmacy, Rawalpindi for support
 
-PALOMA trial investigators for published data
+PALOMA trial investigators for published efficacy and safety data
 
-FDA palbociclib label for PK information
+Pfizer Medical Information for pharmacokinetic parameters
 
-Health economics literature for cost estimates
+FDA for palbociclib prescribing information
 
-Mentors for guidance and support
+Peer reviewers for validation and guidance
+📋 Known Limitations (Version 1.0.0)
+Population: Primarily breast cancer patients (HR+ HER2−); limited pediatric/male data
 
-📚 References
+PK Model: One-compartment simplification; CYP3A4 phenotypes not modeled
 
-Population PK Parameters (CL/F=63 L/h, V/F=2710 L)
+Cost Data: Based on 2025 US pricing; regional variations not accounted for
 
-Royer, B., et al. (2021). "Population Pharmacokinetics of Palbociclib in a Real-World Setting." Cancers, 13(5), 1006. PMC Full Text
+Validation: External cohort n=50; larger validation studies recommended
 
-European Medicines Agency (2020). "Ibrance (palbociclib) EPAR - Product Information." Geometric mean CL/F = 63 L/h. EMA PDF
+Time Horizon: 12-month analysis; long-term efficacy (>5 years) not modeled
 
-Pfizer Medical Information (2018). "IBRANCE® (palbociclib) Fact Sheet." CL/F = 63.1 L/hr (29% CV). Pfizer ASCO
+Drug Interactions: CYP3A4 inhibitors/inducers not included in model
 
-TDM & Neutropenia Exposure-Response
-
-Leenhardt, E., et al. (2022). "Pharmacokinetic Variability Drives Palbociclib-Induced Neutropenia: Interest of Therapeutic Drug Monitoring Proposal." Therapeutic Drug Monitoring, 44(4), 567-575. TDM target: Cmin 40-100 ng/mL. PMC Full Text
-
-Courlet, M., et al. (2022). "Population Pharmacokinetics of Palbociclib and Its Correlation with Neutropenia in Patients with HR+/HER2− Metastatic Breast Cancer." Clinical Pharmacology & Therapeutics, 112(6), 1320-1331. PMC Full Text
-
-Economic & Clinical Validation
-
-U.S. Food and Drug Administration (2022). "IBRANCE® (palbociclib) Prescribing Information." Neutropenia incidence: 66% Grade ≥3. FDA Label
-Full bibliography: See docs/references.bibMigration Guide
-Upgrading from Earlier Versions
-N/A - This is the initial release (1.0.0)
-
-Breaking Changes
-None Known Limitations (Version 1.0.0)
-Population: Primarily based on PALOMA trial demographics (postmenopausal HR+ HER2- breast cancer)
-
-PK Model: One-compartment simplified model; does not account for CYP3A4 phenotypes
-
-Cost Data: Based on 2025 US healthcare pricing; may vary by region/healthcare system
-
-Validation: Validated against 50 patients; larger external validation recommended
-
-Time Horizon: 12-month analysis; long-term outcomes (>5 years) not modeledHow to Report Issues
+🐛 How to Report Issues
 Check GitHub Issues
 
 Create new issue with:
 
-Clear title
+Clear descriptive title
 
-Description of problem
+R version (e.g., R 4.3.1)
 
-Steps to reproduce
+Package versions
+
+Reproducible code snippet
 
 Expected vs actual behavior
 
-R version & package versions Contributing
+🤝 Contributing
 See CONTRIBUTING.md for guidelines on:
 
-How to contribute
+Submitting bug reports
 
-Coding style
+Code style requirements
 
 Pull request process
 
-Testing requirements License
-This project is licensed under the MIT License - see LICENSE file
+Testing requirements
 
+📄 License
+MIT License - See LICENSE for full terms
+
+Summary: Free for academic, research, and commercial use with attribution.
+
+🔄 Changelog by Release
+v1.0.0 (January 3, 2026) [CURRENT]
