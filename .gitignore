@@ -1,3 +1,70 @@
+# R-specific files
+*.Rhistory
+*.RData
+.Rproj.user
+*.Rproj
+.Rprofile
+
+# Output files from running simulations
+*.log
+*.csv.gz
+*.pdf.gz
+
+# Temporary files
+*.tmp
+*.temp
+*~
+
+# System files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Build files
+/build/
+/dist/
+*.egg-info/
+
+# Package-related
+*.tar.gz
+*.zip
+
+# Documentation build files
+docs/_build/
+site/
+
+# Large output files (keep in local, not in repo)
+*.mp4
+*.avi
+
+# Python-related (if used alongside R)
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+venv/
+env/
+
+# Environment variables
+.env
+.env.local
+
+# IDE settings
+.vscode/settings.json
+.idea/
+*.swp
+*.swo
+
+# Results folder (generated outputs)
+results/*.csv
+results/*.txt
+figures/*.png
+
+# But keep the structure
+!results/.gitkeep
+!figures/.gitkeep
+!data/.gitkeep
 # History files
 .Rhistory
 .Rapp.history
