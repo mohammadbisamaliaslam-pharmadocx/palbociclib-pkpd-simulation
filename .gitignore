@@ -1,116 +1,344 @@
-# R-specific files
+# ==============================================================================
+# PALBOCICLIB PK/PD SIMULATION & TDM ANALYSIS
+# .gitignore - Version Control Exclusions
+# ==============================================================================
+
+# ============================================================================
+# R-SPECIFIC FILES
+# ============================================================================
+
+# R history and session data
+.Rhistory
+.Rapp.history
+.RData
+.RDataTmp
 *.Rhistory
-*.RData
-.Rproj.user
+
+# RStudio project files
+.Rproj.user/
 *.Rproj
 .Rprofile
 
-# Output files from running simulations
-*.log
-*.csv.gz
-*.pdf.gz
+# User-specific R settings
+.Ruserdata
 
-# Temporary files
+# R environment variables
+.Renviron
+
+# R markdown cache
+*_cache/
+/cache/
+*.utf8.md
+*.knit.md
+
+# knitr temporary files
+*_files/
+
+# Shiny apps
+rsconnect/
+
+# pkgdown documentation
+docs/
+
+# R check output
+*.Rcheck/
+/*.tar.gz
+
+# ============================================================================
+# PROJECT-SPECIFIC OUTPUT FILES (LARGE/TEMPORARY)
+# ============================================================================
+
+# Simulation outputs (keep code, exclude raw data dumps)
+outputs/*.csv
+outputs/*.rds
+outputs/*.txt
+!outputs/.gitkeep
+
+# Figures and plots (exclude generated, keep code)
+outputs/*.png
+outputs/*.jpg
+outputs/*.pdf
+!outputs/.gitkeep
+
+# Intermediate data files
+data/*.rds
+!data/parameters.rds
+!data/.gitkeep
+
+# Analysis results
+results/*.csv
+results/*.txt
+results/*.log
+!results/.gitkeep
+
+# ============================================================================
+# TEMPORARY & SYSTEM FILES
+# ============================================================================
+
+# OS-specific
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Editor backups & swap files
+*~
+*.swp
+*.swo
+*.swn
+*#*#
 *.tmp
 *.temp
-*~
 
-# System files
-.DS_Store
-Thumbs.db
-.idea/
+# ============================================================================
+# IDE & EDITOR CONFIGURATION
+# ============================================================================
+
+# VS Code
 .vscode/
+.vscode/settings.json
+.vscode/launch.json
+.vscode/extensions.json
+*.code-workspace
 
-# Build files
-/build/
-/dist/
-*.egg-info/
+# JetBrains IDEs
+.idea/
+*.iml
+*.iws
+*.ipr
+.classpath
+.project
+.c9/
 
-# Package-related
-*.tar.gz
-*.zip
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
 
-# Documentation build files
-docs/_build/
-site/
+# Vim
+.vim/
+*.netrwhist
 
-# Large output files (keep in local, not in repo)
-*.mp4
-*.avi
+# Emacs
+*~
+\#*\#
+.\#*
 
-# Python-related (if used alongside R)
+# ============================================================================
+# PYTHON-RELATED (IF USED ALONGSIDE R)
+# ============================================================================
+
+# Python cache
 __pycache__/
 *.py[cod]
 *$py.class
-.pytest_cache/
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
 venv/
 env/
+ENV/
+env.bak/
+venv.bak/
+.venv/
+
+# pytest
+.pytest_cache/
+.coverage
+htmlcov/
+
+# ============================================================================
+# COMPRESSED & LARGE FILES
+# ============================================================================
+
+# Compressed archives
+*.zip
+*.tar
+*.tar.gz
+*.tar.bz2
+*.7z
+*.rar
+
+# Compressed data
+*.csv.gz
+*.rds.gz
+*.RData.gz
+
+# Large media files
+*.mp4
+*.avi
+*.mov
+*.wmv
+*.flv
+*.mkv
+*.webm
+
+# Large plots/publications
+*.pdf (if > 5MB)
+
+# ============================================================================
+# CREDENTIAL & ENVIRONMENT FILES
+# ============================================================================
 
 # Environment variables
 .env
 .env.local
+.env.*.local
+.env.production.local
 
-# IDE settings
-.vscode/settings.json
-.idea/
-*.swp
-*.swo
+# API keys and secrets
+secrets.txt
+api_keys.json
+credentials.json
+.aws/
 
-# Results folder (generated outputs)
-results/*.csv
-results/*.txt
-figures/*.png
+# Database files
+*.db
+*.sqlite
+*.sqlite3
 
-# But keep the structure
+# ============================================================================
+# BUILD & INSTALLATION
+# ============================================================================
+
+# Build artifacts
+build/
+dist/
+*.egg-info/
+*.egg
+*.tar.gz
+
+# Installation
+site-packages/
+*.so
+
+# ============================================================================
+# DOCUMENTATION BUILD FILES
+# ============================================================================
+
+# Markdown/documentation builds
+docs/_build/
+docs/site/
+site/
+*.md.bak
+
+# ============================================================================
+# LOG FILES & DEBUG OUTPUT
+# ============================================================================
+
+# Simulation logs
+*.log
+simulation*.log
+error*.log
+debug*.log
+
+# Package installation logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# ============================================================================
+# OPERATING SYSTEM SPECIFIC
+# ============================================================================
+
+# Windows
+Thumbs.db
+*.lnk
+$RECYCLE.BIN/
+
+# macOS
+.AppleDouble
+.LSOverride
+.TemporaryItems
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# Linux
+.directory
+
+# ============================================================================
+# GITHUB-SPECIFIC
+# ============================================================================
+
+# GitHub Actions artifacts
+.github/workflows/artifacts/
+
+# GitHub Pages
+.github/pages/
+
+# ============================================================================
+# DIRECTORIES TO KEEP (STRUCTURE)
+# ============================================================================
+
+# Keep empty directories with .gitkeep
+!outputs/.gitkeep
 !results/.gitkeep
-!figures/.gitkeep
 !data/.gitkeep
-# History files
-.Rhistory
-.Rapp.history
+!figures/.gitkeep
+!src/.gitkeep
 
-# Session Data files
-.RData
-.RDataTmp
+# ============================================================================
+# EXCEPTIONS (INCLUDE IMPORTANT FILES)
+# ============================================================================
 
-# User-specific files
-.Ruserdata
+# DO INCLUDE these files even if pattern matches:
 
-# Example code in package build process
-*-Ex.R
+# Include R scripts (core analysis)
+!*.R
+!src/*.R
 
-# Output files from R CMD build
-/*.tar.gz
+# Include markdown files
+!README.md
+!*.md
 
-# Output files from R CMD check
-/*.Rcheck/
+# Include configuration files
+!.gitignore
+!.gitattributes
 
-# RStudio files
-.Rproj.user/
+# Include project files
+!*.yml
+!*.yaml
 
-# produced vignettes
-vignettes/*.html
-vignettes/*.pdf
+# Include data source documentation
+!data/README.md
+!data/00_Data_Dictionary.md
 
-# OAuth2 token, see https://github.com/hadley/httr/releases/tag/v0.3
-.httr-oauth
+# Include paper/publication files
+!manuscript/*.tex
+!manuscript/*.bib
+!manuscript/*.docx
 
-# knitr and R markdown default cache directories
-*_cache/
-/cache/
+# Include parameter files (keep these!)
+!data/parameters.rds
+!all_params.rds
 
-# Temporary files created by R markdown
-*.utf8.md
-*.knit.md
-
-# R Environment Variables
-.Renviron
-
-# pkgdown site
-docs/
-
-# translation temp files
-po/*~
-
-# RStudio Connect folder
-rsconnect/
+# ============================================================================
+# NOTES
+# ============================================================================
+# This .gitignore is configured for:
+# - R-based pharmacokinetic/pharmacodynamic simulation
+# - Clinical trial analysis
+# - Health economic evaluation
+# 
+# Generated outputs (CSV, PNG) are excluded to reduce repo size
+# Source code and documentation are included
+# 
+# To force-add ignored files: git add -f <filename>
+# ==============================================================================
