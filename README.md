@@ -4,7 +4,7 @@
 
 This repository contains R code for a population pharmacokinetic/pharmacodynamic (PK/PD) simulation of **palbociclib**, a CDK4/6 inhibitor used in breast cancer treatment. The simulation characterizes dose-exposure-response relationships and predicts clinical outcomes under various dosing regimens.
 
-**Status**: Active development (Jan–Aug 2026) | Prepared for ASHP presentation (Dec 2026) and CPT tutorial publication (2027)
+**Status**: Active development (Jan 2026) | Prepared for ASHP presentation (Dec 2026) 
 
 ---
 
@@ -41,7 +41,7 @@ Palbociclib exhibits nonlinear pharmacokinetics, drug-drug interactions (CYP3A4 
 | Folder/File | Purpose |
 |-------------|---------|
 | `data/` | Raw data (PK parameters, trial data) |
-| `scripts/` | R analysis code (**6 modular scripts**) |
+| `src/` | R analysis code (**6 modular scripts**) |
 | `outputs/` | Results (PDF plots, CSV data) |
 | `docs/` | Documentation (equations, **references.bib**) |
 | `01_model_setup.R` | PK parameters + model functions |
@@ -219,12 +219,11 @@ This project was developed under the mentorship of **Dr. Zubair Anwar** as part 
 
 | Phase | Dates | Deliverables | Status |
 |-------|-------|--------------|--------|
-| **Phase 1: Setup & Literature** | Jan 2026 | GitHub repo, model equations, parameter compilation | In progress |
-| **Phase 2: Code & Simulation** | Feb–Mar 2026 | Functional ODE solver, population simulation, validation | Planned |
-| **Phase 3: Visualization & Polish** | Apr 2026 | Publication-quality plots, sensitivity analysis | Planned |
-| **Phase 4: ASHP Preparation** | May–Jun 2026 | Abstract, presentation materials, peer review | Planned |
-| **Phase 5: CPT Tutorial** | Jul–Aug 2026 | Full tutorial manuscript, submitted to journal | Planned |
-| **Phase 6: Final Polish & Archival** | Sep–Dec 2026 | Code review, documentation finalization, GitHub release | Planned |
+| **Phase 1: Setup & Literature** | dec 2025 | GitHub repo, model equations, parameter compilation | Done |
+| **Phase 2: Code & Simulation** | Jan 2026 | Functional ODE solver, population simulation, validation | Done |
+| **Phase 3: Visualization & Polish** | Jan 2026 | Publication-quality plots, sensitivity analysis | Done |
+| **Phase 4: ASHP Preparation** | Feb-May 2026 | Abstract, presentation materials, peer review | Planned |
+| **Phase 5: Final Polish & Archival** | Sep–Dec 2026 | Code review, documentation finalization, GitHub release | Planned |
 
 ---
 
@@ -235,7 +234,7 @@ This project was developed under the mentorship of **Dr. Zubair Anwar** as part 
 1. **Open an Issue** on GitHub (describe problem + expected behavior)
 2. **Provide data**: Share minimal reproducible example if bug-related
 
-**Author & Maintainer**: Mohammad Bisam Ali Aslam, pharmD
+**Author & Maintainer**: Mohammad Bisam Ali Aslam, pharmD candidate
 
 ---
 
@@ -262,6 +261,13 @@ Key publications informing this TDM simulation model:
 
 ### Economic & Clinical Validation
 - U.S. Food and Drug Administration (2022). "IBRANCE® (palbociclib) Prescribing Information." Neutropenia incidence: 66% Grade ≥3. [FDA Label](https://www.accessdata.fda.gov/drugsatfda_docs/label/2022/207103s015lbl.pdf)
+
+### Clinical trial data refrences
+## Primary Efficacy Trials
+- **PALOMA-1 (Phase II)**: https://pubmed.ncbi.nlm.nih.gov/26324739/
+- **PALOMA-2 (Phase III)**: https://clinicaltrials.gov/study/NCT01740427
+- **PALOMA-3 (Phase III)**: https://pmc.ncbi.nlm.nih.gov/articles/PMC5560465/
+
 
 **Full bibliography**: See `docs/references.bib`
 
