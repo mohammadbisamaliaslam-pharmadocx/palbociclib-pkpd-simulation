@@ -288,8 +288,7 @@ report_md <- sprintf("
 
 **Date:** %s  
 **Author:** Mohammad Bisam Ali Aslam, PharmD  
-**Institution:** Aga Khan University, Faculty of Pharmacy  
-**Location:** Abu Dhabi, UAE
+
 
 ---
 
