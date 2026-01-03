@@ -124,3 +124,7 @@ Each parameter varied independently by ±20%.
 - **Trial Alignment:** Matches PALOMA-2 baseline risk (66.4%) and dose reduction rates (36%).
 - **Standards:** Compliant with Good Pharmacometric Practices (GPP) and CONSORT-PK.
 
+---
+
+## 8. Acknowledgements 
+- **This project used artificial intelligence tools (Perplexity, Claude) for technical assistance with code documentation and visualization explanations. All pharmacometric modeling decisions, parameter selection from literature, Monte Carlo simulation design, and scientific interpretation were conducted by the student author, who fully understands and takes responsibility for all methodological choices.
