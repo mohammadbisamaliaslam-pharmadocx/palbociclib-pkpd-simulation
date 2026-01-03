@@ -1,0 +1,11 @@
+Parameter,Value,Source,Notes
+CL,63,Royer et al. 2021,Population clearance (L/h)
+CV_CL,37%,Royer et al. 2021,Coefficient of variation
+V,2710,FDA IBRANCE Label,Volume of distribution (L)
+EC50,52,Scenario calibration,Cmin for 50% risk (ng/mL)
+Slope,0.10,Leenhardt et al. 2022,Logistic slope
+Dose_Standard,125,FDA label,Standard dose (mg)
+Dose_Reduced,100,Clinical practice,Dose reduction (mg)
+Threshold_High,100,Leenhardt et al. 2022,TDM threshold (ng/mL)
+Hospitalization_Cost,22839,Tai et al. 2017,Per event (USD)
+TDM_Assay_Cost,350,Lab standard,Per assay (USD)
