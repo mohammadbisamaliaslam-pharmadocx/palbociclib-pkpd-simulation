@@ -25,3 +25,9 @@ message("\nSTEP 4: Generating Final Report...")
 source("src/04_main_report.R")
 
 message("\n✅ ALL SYSTEMS GO! Simulation complete.")
+
+# 5. Generate PDF Poster
+message("\nSTEP 5: Generating PDF Poster...")
+if(file.exists("src/06_generate_poster.R")) {
+  source("src/06_generate_poster.R")
+}
