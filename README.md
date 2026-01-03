@@ -1,7 +1,9 @@
 # Palbociclib Therapeutic Drug Monitoring: A PALOMA-Calibrated Population PK-PD Simulation
 
-**Author:** Mohammad Bisam Ali Aslam
+**Author:** Mohammad Bisam Ali Aslam, PharmD Candidate
+
 **Affiliation:** Akhtar Saeed College of Pharmacy (ASCP), Rawalpindi, Pakistan
+
 **GitHub:** https://github.com/mohammadbisamaliaslam-pharmadocx/palbociclib-pkpd-simulation
 
 ## Executive Summary
