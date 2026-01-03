@@ -1,16 +1,16 @@
-Package: palbociclibTDM
+Package: palbociclibsimulation
 Title: Palbociclib Therapeutic Drug Monitoring - Population PK/PD Simulation & Cost-Effectiveness Analysis
 Version: 1.0.0
 Date: 2026-01-03
 Authors@R: 
     person("Mohammad Bisam Ali", "Aslam", 
-           email = "m.aslam@aku.edu", 
+           email = "mohammadbisamaliaslam@gmail.com", 
            role = c("aut", "cre"),
-           comment = c(ORCID = "0000-0002-3456-7890")),
-    person("Aga Khan University", 
-           role = "cph",
-           comment = "Faculty of Pharmacy, Abu Dhabi")
-Maintainer: Mohammad Bisam Ali Aslam <m.aslam@aku.edu>
+           comment = c(ORCID = "0009-0001-2000-0417")),
+    person("Akhtar Saeed College of Pharmacy, Rawalpindi", 
+           role = "student",
+           comment = "Department of Pharmacy, Rawalpindi")
+Maintainer: Mohammad Bisam Ali Aslam <mohammadbisamaliaslam@gmail.com>
 Description: 
     A comprehensive Monte Carlo simulation package for population pharmacokinetic/
     pharmacodynamic (PK/PD) modeling and health economic evaluation of therapeutic 
@@ -26,22 +26,22 @@ Description:
     - Sensitivity and scenario analyses for robust decision-making
     - Publication-ready visualizations and reports
     
-    KEY FINDINGS from 1,000-patient Monte Carlo simulation (n=1,000):
+   KEY FINDINGS from 1,000-patient Monte Carlo simulation (n=1,000):
     - Baseline Grade 3/4 neutropenia: 66.0% (matches PALOMA trials)
-    - TDM-guided neutropenia risk: 33.2% (50.3% absolute reduction)
+    - TDM-guided neutropenia risk: 50.2% (15.8% absolute reduction)
     - Number Needed to Treat (NNT): 6.3 (treat 6.3 to prevent 1 case)
     - Cases prevented per 1,000 patients: 158 annually
-    - Annual cost per patient: $42,756 (standard) vs $41,170 (TDM) = $1,586 saved
-    - Population savings (1,000 patients): $1,586,000 annually
+    - Annual cost per patient: $54,000 (standard) vs $50,600 (TDM) = $3,400 saved
+    - Population savings (1,000 patients): $3,400,000 annually
     - Cost-effectiveness: DOMINANT (lower cost + better outcomes)
-    - Cost per case prevented: -$10,038 (actual savings)
+    - Cost per case prevented: -$21,518 (actual savings)
     
     CLINICAL EVIDENCE:
     - Model calibrated to PALOMA-1/2/3 trial outcomes (baseline 66% G3/4 neutropenia)
     - Dose reduction rate matches PALOMA observations (36% vs 34-40% literature)
     - Exposure distribution validated against real-world PK studies
     - External validation cohort (n=100) shows excellent agreement with predictions
-    
+
     WORKFLOW:
     1. 01_model_setup.R - Load literature-verified PK/PD parameters
     2. 02_simulation_engine.R - Run 1,000-patient Monte Carlo simulation
@@ -74,8 +74,8 @@ Suggests:
     rmarkdown (>= 2.5),
     testthat (>= 3.0.0)
 VignetteBuilder: knitr
-URL: https://github.com/mohammadbisamaliaslam-pharmadocx/palbociclib-pkpd-tdm
-BugReports: https://github.com/mohammadbisamaliaslam-pharmadocx/palbociclib-pkpd-tdm/issues
+URL: https://github.com/mohammadbisamaliaslam-pharmadocx/palbociclib-pkpd-simulation
+BugReports: https://github.com/mohammadbisamaliaslam-pharmadocx/palbociclib-pkpd-simulation/issues
 Keywords: 
     pharmacokinetics, 
     pharmacodynamics, 
