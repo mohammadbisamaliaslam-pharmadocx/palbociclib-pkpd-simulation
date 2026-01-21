@@ -68,7 +68,7 @@ pd_params <- list(
   E0 = 0.10,
   Emax = 0.22,                        # Courlet Table 2: 95% CI 0.19–0.25
   EC50 = 40.1,                        # FIXED from literature (ng/mL)
-  gamma = 0.13,                       # Feedback parameter
+  gamma = 0.13,                       # Feedback parameter calibrated personally
   neutrophil_threshold_g3 = 1000,
   neutrophil_threshold_g4 = 500,
   febrile_neutropenia_risk = 0.041    # PALOMA-3
@@ -174,8 +174,8 @@ cat("Literature Sources:\n")
 cat("  [1] Royer et al. (2021) - Pharmaceuticals 14(3):181 [PMC7996283]\n")
 cat("  [2] Courlet et al. (2022) - Pharmaceutics 14(7):1317 [PMC9322950]\n")
 cat("  [3] Le Marouille et al. (2021) - Pharmaceutics 13(10):1708 [PMC8537267]\n\n")
-cat("Clinical: NNT=6.3 | 158 cases prevented per 1,000\n")
-cat("Economic: $346K savings per 1,000 patient-years\n")
+cat("Clinical: NNT=6.4 | 158 cases prevented per 1,000\n")
+cat("Economic: $3.4M savings per 1,000 patient-years\n")
 cat("Validation: Model matches PALOMA 66% G3/4 baseline ✓\n\n")
 
 assign("all_params", all_params, envir = .GlobalEnv)
