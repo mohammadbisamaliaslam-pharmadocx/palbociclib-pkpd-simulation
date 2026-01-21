@@ -33,7 +33,7 @@
 - 06_generate_poster.R
 
 **Key Outputs**
-- `FINAL_ASHP_POSTER.pdf`: Print-ready conference poster
+- `ASHP_POSTER_FINAL.pdf`: Print-ready conference poster
 - `ASHP_04_Economic_Impact.png`: Visualization of the $3.4M savings
 - `ASHP_02_NNT_Visual.png`: Visualization of NNT=6.4
 
@@ -43,7 +43,7 @@
 - **Repository:** https://github.com/mohammadbisamaliaslam-pharmadocx/palbociclib-pkpd-simulation
 - **Version:** 1.0.0 - Production Ready
 - **Validation:** PALOMA-2 Calibrated | Literature Verified
-- **Last Updated:** January 3, 2026
+- **Last Updated:** January 21, 2026
 
 ---
 
