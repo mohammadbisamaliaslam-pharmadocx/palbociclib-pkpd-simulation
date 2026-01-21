@@ -55,7 +55,7 @@ tdm_params <- list(
   tdm_threshold_target = 70,    # Leenhardt: Ctrough-neutropenia correlation
   tdm_threshold_lower = 40,
   dose_adjustment_cycle = 2,
-  tdm_assay_cost = 350,
+  tdm_assay_cost = 150,
   tdm_frequency = 1
 )
 
@@ -84,7 +84,7 @@ cost_params <- list(
   g_csf_doses_per_episode = 3,
   antibiotic_cost_per_course = 800,
   febrile_neutropenia_additional_cost = 12000,
-  tdm_assay_cost = 350,
+  tdm_assay_cost = 150,
   tdm_frequency_per_patient = 1,
   tdm_implementation_cost = 100,
   palbociclib_cost_per_dose = 500,
