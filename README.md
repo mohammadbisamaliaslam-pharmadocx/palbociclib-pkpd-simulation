@@ -13,7 +13,7 @@ This repository contains a validated pharmacometric simulation demonstrating the
 - **Baseline Grade 3/4 Neutropenia Risk:** 65.9% (vs. 66.4% in PALOMA-2 trial)
 - **TDM-Guided Risk:** 50.2%
 - **Absolute Risk Reduction:** 15.8%
-- **Number Needed to Treat (NNT):** 6.4 (EXCELLENT)
+- **Number Needed to Treat (NNT):** 6.4 
 - **Dose Reduction Rate:** 36.4% (matches real-world practice)
 - **Net Cost Savings:** $3.4M per 1,000 patients
 
@@ -21,7 +21,7 @@ This repository contains a validated pharmacometric simulation demonstrating the
 This simulation was explicitly calibrated to reproduce the pivotal PALOMA-2 clinical trial results (Finn et al., NEJM 2016). By matching the observed baseline toxicity profile (66.4%), the model demonstrates clinical fidelity and real-world applicability.
 
 ### Model Parameters
-- Population PK: CL/F = 47 L/h (CV 45%), V/F = 2,500 L
+- Population PK: CL/F = 58.3 L/h (CV 45%), V/F = 1,580 L
 - PD Model: Emax = 4.9, EC50 = 65 ng/mL, Hill coefficient = 6.5
 - TDM Intervention: Dose reduction (125 mg to 100 mg) if Cmin > 100 ng/mL
 - Study Design: Monte Carlo simulation (n=1,000 virtual patients)
