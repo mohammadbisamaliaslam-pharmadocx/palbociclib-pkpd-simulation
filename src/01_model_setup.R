@@ -1,4 +1,4 @@
-# CALIBRATED PARAMETERS FOR ASHP POSTER
+# CALIBRATED PARAMETERs
 pk_params <- list(
   CL_pop = 31.0,    # Lower CL -> Higher Exposure -> Higher Risk
   V_pop  = 2500,
