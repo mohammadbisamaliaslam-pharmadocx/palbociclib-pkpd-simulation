@@ -18,8 +18,8 @@ A one-compartment model with first-order absorption and lag time was selected ba
 |-----------|-------|--------|-------|
 | **Clearance (CL/F)** | 58.3 L/h | Royer et al. 2021 | IIV = 31.3% (log-normal) |
 | **Volume (V/F)** | 1,580 L | Royer et al. 2021 | IIV = 40% (log-normal) |
-| **Absorption Rate (Ka)** | 0.187 h⁻¹ | Fixed (literature) | Corresponds to ~3.7 h absorption half-life |
-| **Lag Time (Tlag)** | 0.5 h | Fixed (literature) | Accounts for gastrointestinal transit |
+| **Absorption Rate (Ka)** | 0.187 h⁻¹ | Royer et al. 2021; Le Marouille et al. 2021 | Corresponds to ~3.7 h absorption half-life |
+| **Lag Time (Tlag)** | 0.5 h | Royer et al. 2021; Le Marouille et al. 2021 | Accounts for gastrointestinal transit |
 | **Bioavailability (F)** | 46% | FDA Ibrance Label | Relative bioavailability vs IV reference |
 | **Body Weight Scaling** | BW^0.75 | Allometric | Applied to CL/F and V/F |
 
