@@ -1,5 +1,5 @@
 # ==============================================================================
-# FINAL ASHP POSTER GENERATOR
+# ASHP POSTER GENERATOR
 # Combines all outputs into a print-ready PDF
 # ==============================================================================
 if(!require(grid)) install.packages("grid")
