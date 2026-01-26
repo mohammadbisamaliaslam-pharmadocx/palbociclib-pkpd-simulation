@@ -1,6 +1,5 @@
 # ==============================================================================
-# FINAL REPRODUCIBLE SCENARIO GENERATION
-# Matches ASHP Poster Data EXACTLY
+# REPRODUCIBLE SCENARIO GENERATION
 # ==============================================================================
 rm(list = ls())
 set.seed(12345)
@@ -25,7 +24,7 @@ Cmin_Base <- c(Cmin_A, Cmin_B)
 Risk_Base <- c(rep(Risk_Base_A, n_A), rep(Risk_Base_B, n_B))
 Risk_TDM  <- c(rep(Risk_TDM_A, n_A),  rep(Risk_TDM_B, n_B))
 
-# Add random noise for realism
+# Add random noise for realism ?
 Risk_Base <- pmin(0.99, pmax(0.01, Risk_Base + rnorm(n, 0, 0.05)))
 Risk_TDM  <- pmin(0.99, pmax(0.01, Risk_TDM  + rnorm(n, 0, 0.05)))
 
