@@ -1,5 +1,5 @@
 # ==============================================================================
-# SENSITIVITY ANALYSIS (SIMPLIFIED FOR CALIBRATED MODEL)
+# SENSITIVITY ANALYSIS
 # ==============================================================================
 
 # Load baseline results
