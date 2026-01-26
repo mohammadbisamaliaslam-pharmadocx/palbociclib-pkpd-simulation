@@ -1,6 +1,6 @@
 # ==============================================================================
 # ASHP POSTER VISUALIZATION GENERATOR
-# Generates 6 High-Quality Figures for the Poster
+# Generating Figures for the Poster
 # ==============================================================================
 library(ggplot2)
 library(gridExtra)
