@@ -1,4 +1,19 @@
 # ==============================================================================
+# SIMULATION ENGINE - SCENARIO-BASED MONTE CARLO APPROACH
+# ==============================================================================
+# This script uses a scenario-based structure in which 1,000 virtual patients
+# are assigned to two exposure subgroups informed by the published population
+# PK distribution of palbociclib (Royer et al. 2021, Pharmaceuticals 14(3):181).
+#
+# Group A (n=360, 36%): Cmin > 100 ng/mL (mean 135 ng/mL, SD 10)
+#   - Derived from upper range of Royer 2021 CL/F distribution
+#   - Group risk estimate from Hill model at group mean Cmin
+#     (Courlet et al. 2022, EC50=40.1 ng/mL, Emax=0.22, gamma=0.13)
+#
+# Group B (n=640, 64%): Cmin <= 100 ng/mL (mean 65 ng/mL, SD 15)
+#   - Derived from central tendency of Royer 2021 distribution
+#   - Group risk estimate from Hill model at group mean Cmin
+# ==============================================================================# ==============================================================================
 # REPRODUCIBLE SCENARIO GENERATION
 # ==============================================================================
 rm(list = ls())
