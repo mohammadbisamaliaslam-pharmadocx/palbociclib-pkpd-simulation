@@ -38,7 +38,7 @@ See LIMITATIONS.md for full disclosure.
 ## Model Parameters
 
 ### Population Pharmacokinetics
-Source: Royer et al. (2021), Pharmaceuticals 14(3):181 [PMC7996283]
+Source: Royer et al. (2021)
 
 | Parameter | Value | IIV (CV%) |
 |-----------|-------|-----------|
@@ -49,7 +49,7 @@ Source: Royer et al. (2021), Pharmaceuticals 14(3):181 [PMC7996283]
 | F (oral bioavailability) | 46% | — |
 
 ### Exposure-Response (Pharmacodynamics)
-Source: Courlet et al. (2022), Pharmaceutics 14(7):1317 [PMC9322950]
+Source: Courlet et al. (2022)
 
 | Parameter | Value |
 |-----------|-------|
