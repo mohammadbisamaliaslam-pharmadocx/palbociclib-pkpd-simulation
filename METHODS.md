@@ -129,13 +129,13 @@ assuming dose-proportional pharmacokinetics.
 - **Palbociclib 125 mg:** $42,756/year per patient (standard dosing)
 
 #### Adverse Event Management
-- **Hospitalisation cost per Grade 3/4 neutropenia event:** $22,839
+- **Hospitalization cost per Grade 3/4 neutropenia event:** $22,839  
   (Tai et al. 2017, J Oncol Pract)
-- **Weighted average cost per event (including G-CSF, antibiotics,
-  outpatient care):** $17,045
+- **Weighted average cost per event (including G-CSF, antibiotics, outpatient care):** $17,045
 - **Total events at standard dosing (1,000 patients):** 660 events
 - **Total events with TDM (1,000 patients):** 502 events
-- **Gross savings (avoided toxicity):** ~$5.6M
+- **Prevented events:** 158
+- **Gross savings (avoided toxicity):** $5.6M
 
 #### TDM Programme Cost
 - **TDM assay (LC-MS/MS):** $150 per patient per cycle
@@ -145,16 +145,14 @@ assuming dose-proportional pharmacokinetics.
 
 ### Budget Impact Model (1,000 patients, 1 year)
 
-| Scenario | Drug Cost | AE Management | TDM Programme | **Total Cost** |
-|----------|-----------|---------------|---------------|----------------|
-| Standard Dosing | $42.7M | $11.3M | $0 | **$54.0M** |
-| TDM-Guided | $42.7M | $5.7M | $2.2M | **$50.6M** |
-| **Net Savings** | $0 | $5.6M saved | $2.2M cost | **$3.4M net saving** |
+| Scenario     | Drug Cost | AE Management | TDM Programme | **Total Cost** |
+|--------------|-----------|---------------|---------------|----------------|
+| Standard     | $42.7M    | $11.3M        | $0            | **$54.0M**     |
+| TDM-Guided   | $42.7M    | $5.7M         | $2.2M         | **$50.6M**     |
+| **Net**      | $0        | $5.6M saved   | $2.2M cost    | **$3.4M**      |
 
 ### ROI
-For every $1 spent on TDM implementation, the healthcare system saves
-approximately $2.54 in avoided toxicity costs. TDM is the dominant strategy
-(lower total cost and better clinical outcomes).
+For every **$1** spent on TDM implementation, the healthcare system saves approximately **$2.55** in avoided toxicity costs ($5.6M gross savings ÷ $2.2M investment). TDM is the dominant strategy (lower total cost and better clinical outcomes: 660→502 events).
 
 ---
 
