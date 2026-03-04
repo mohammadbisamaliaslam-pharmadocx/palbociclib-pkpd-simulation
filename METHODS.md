@@ -152,7 +152,7 @@ assuming dose-proportional pharmacokinetics.
 | **Net**      | $0        | $5.6M saved   | $2.2M cost    | **$3.4M**      |
 
 ### ROI
-For every **$1** spent on TDM implementation, the healthcare system saves approximately **$2.55** in avoided toxicity costs ($5.6M gross savings ÷ $2.2M investment). TDM is the dominant strategy (lower total cost and better clinical outcomes.
+For every **$1** spent on TDM implementation, the healthcare system saves approximately **$2.54** in avoided toxicity costs ($5.6M gross savings ÷ $2.2M investment). TDM is the dominant strategy (lower total cost and better clinical outcomes.
 
 ---
 
