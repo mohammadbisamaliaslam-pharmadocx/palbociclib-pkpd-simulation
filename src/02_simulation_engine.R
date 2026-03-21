@@ -3,7 +3,7 @@
 # ==============================================================================
 # This script uses a scenario-based structure in which 1,000 virtual patients
 # are assigned to two exposure subgroups informed by the published population
-# PK distribution of palbociclib (Royer et al. 2021, Pharmaceuticals 14(3):181).
+# PK distribution of palbociclib (Royer et al. 2021).
 #
 # Group A (n=360, 36%): Cmin > 100 ng/mL (mean 135 ng/mL, SD 10)
 #   - Derived from upper range of Royer 2021 CL/F distribution
