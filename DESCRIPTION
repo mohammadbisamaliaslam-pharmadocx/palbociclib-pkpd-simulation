@@ -1,99 +1,172 @@
 Package: palbociclibsimulation
-Title: Palbociclib Therapeutic Drug Monitoring - Population PK/PD Simulation & Cost-Effectiveness Analysis
-Version: 1.0.0
-Date: 2026-01-03
+Title: Palbociclib Therapeutic Drug Monitoring — Population PK/PD Simulation & Pharmacoeconomic Analysis
+Version: 2.0.0
+Date: 2026-05-19
 Authors@R: 
     person("Mohammad Bisam Ali", "Aslam", 
            email = "mohammadbisamaliaslam@gmail.com", 
            role = c("aut", "cre"),
            comment = c(ORCID = "0009-0001-2000-0417")),
-    person("Akhtar Saeed College of Pharmacy, Rawalpindi", 
-           role = "student",
-           comment = "Department of Pharmacy, Rawalpindi")
+    person("Zubair", "Anwar",
+           role = "ths",
+           comment = "Institutional Supervisor, Akhtar Saeed College of Pharmacy"),
+    person("Akhtar Saeed College of Pharmacy, University of the Punjab, Rawalpindi",
+           role = "cph")
 Maintainer: Mohammad Bisam Ali Aslam <mohammadbisamaliaslam@gmail.com>
 Description: 
-    A comprehensive Monte Carlo simulation package for population pharmacokinetic/
-    pharmacodynamic (PK/PD) modeling and health economic evaluation of therapeutic 
-    drug monitoring (TDM)-guided palbociclib dosing in patients with hormone receptor-
-    positive HER2-negative metastatic breast cancer.
-    
-    The package implements:
-    - Literature-verified population PK parameters (Royer et al. 2021)
-    - Exposure-response modeling using E_max pharmacodynamic framework (Courlet et al. 2022)
-    - Automated TDM decision algorithm with 5-tier classification system
-    - Adverse event risk prediction with 8 major hematologic/non-hematologic toxicities
-    - Comprehensive health economic analysis (drug costs, AE management, TDM program costs)
-    - Sensitivity and scenario analyses for robust decision-making
-    - Publication-ready visualizations and reports
-    
-   KEY FINDINGS from 1,000-patient Monte Carlo simulation (n=1,000):
-    - Baseline Grade 3/4 neutropenia: 66.0% (matches PALOMA trials)
-    - TDM-guided neutropenia risk: 50.2% (15.8% absolute reduction)
-    - Number Needed to Treat (NNT): 6.3 (treat 6.3 to prevent 1 case)
-    - Cases prevented per 1,000 patients: 158 annually
-    - Annual cost per patient: $54,000 (standard) vs $50,600 (TDM) = $3,400 saved
-    - Population savings (1,000 patients): $3,400,000 annually
-    - Cost-effectiveness: DOMINANT (lower cost + better outcomes)
-    - Cost per case prevented: -$21,518 (actual savings)
-    
-    CLINICAL EVIDENCE:
-    - Model calibrated to PALOMA-1/2/3 trial outcomes (baseline 66% G3/4 neutropenia)
-    - Dose reduction rate matches PALOMA observations (36% vs 34-40% literature)
-    - Exposure distribution validated against real-world PK studies
-    - External validation cohort (n=100) shows excellent agreement with predictions
+    A publication-grade Monte Carlo scenario-based pharmacoeconomic decision-analytic
+    model for evaluating therapeutic drug monitoring (TDM)-guided palbociclib dosing
+    in patients with hormone receptor-positive, HER2-negative (HR+/HER2-) metastatic
+    breast cancer.
 
-    WORKFLOW:
-    1. 01_model_setup.R - Load literature-verified PK/PD parameters
-    2. 02_simulation_engine.R - Run 1,000-patient Monte Carlo simulation
-    3. 03_sensitivity_analysis.R - Parameter sensitivity (EC50, CL, thresholds)
-    4. 04_main_report.R - Generate publication-ready figures and summary tables
-    5. 05_data_import.R - Clinical trial reference data and validation cohorts
-    6. 06_validation.R - Model validation against PALOMA trials
-    7. 07_tdm_algorithm.R - TDM decision rules and dose optimization
-    8. 08_cost_analysis.R - Health economic evaluation and budget impact
-    
-    All analysis scripts are self-contained and reproducible. Parameters sourced 
-    from peer-reviewed literature (PMC citations included). Ready for GitHub publication, 
-    peer review, and ASHP poster presentation.
+    MODEL ARCHITECTURE:
+    The package implements a two-component model:
+    (1) A mechanistic one-compartment population pharmacokinetic model using
+        literature-verified parameters (Royer et al. 2021, PMID:33668400;
+        CL/F = 58.3 L/h, V/F = 1580 L, IIV 31.3%), producing a simulated mean
+        Cmin of 70 ng/mL consistent with the published clinical median of 74.1 ng/mL
+        (Leenhardt et al. 2022, PMID:35456675).
+    (2) A scenario-based risk assignment framework calibrated to PALOMA-2 trial
+        outcomes (baseline G3/4 neutropenia 66.4%; Finn et al. 2016, PMID:27959613)
+        and Leenhardt et al. 2022 TDM intervention data (NNT = 6.3, PMID:35397465).
+        This approach is appropriate given the near-flat Emax exposure-toxicity
+        curve (gamma = 0.13; Courlet et al. 2022, PMID:35890213), which precludes
+        mechanistic risk discrimination across the therapeutic Cmin range.
+
+    PHARMACODYNAMIC MODEL:
+    Simplified sigmoidal Emax approximation calibrated to Courlet et al. 2022:
+    E0 = 0.66, Emax = 0.22, EC50 = 40.1 ng/mL, gamma = 0.13.
+    Unit-verified: all outputs on valid probability scale (0-1).
+
+    TDM DECISION ALGORITHM:
+    Five-tier Cmin classification system (Leenhardt et al. 2022, PMID:35397465):
+    Tier 1 (<40 ng/mL): evaluate; Tier 2 (40-70): continue;
+    Tier 3 (70-100): optimal★; Tier 4 (100-150): reduce to 100 mg;
+    Tier 5 (>150): reduce/hold. TDM threshold: 100 ng/mL.
+
+    KEY FINDINGS (n = 1,000 virtual patients, seed = 12345):
+    - Simulated mean Cmin:             70.0 ng/mL (literature: 74.1 ng/mL)
+    - Baseline Grade 3/4 neutropenia:  66.0% (PALOMA-2 target: 66.4%)
+    - TDM-guided G3/4 risk:            50.4%
+    - Absolute Risk Reduction (ARR):   15.6%
+    - Number Needed to Treat (NNT):    6.4 (Leenhardt 2022 observed: 6.3)
+    - Cases prevented per 1,000:       156 annually
+    - Dose modification rate:          36.4% (PALOMA-2: 36.4%)
+    - Gross AE savings (1,000 pts):    $3,563,045
+    - TDM programme cost (1,000 pts):  $350,000 ($350/patient, LC-MS/MS)
+    - Net savings (1,000 patients):    $3,213,045 annually
+    - Savings per patient:             $3,213
+    - ROI on TDM investment:           918%
+    - Cost per case prevented:         NEGATIVE (net cost-saving)
+
+    SENSITIVITY ANALYSIS:
+    One-way sensitivity analysis (6 parameters) and two-way sensitivity analysis
+    (hospitalization cost $11,337-$35,899 x ARR 8-24%; 10x10 = 100 scenarios).
+    Break-even ARR = 1.5% at base hospitalization cost ($22,839).
+    TDM cost-saving in 100% of two-way SA scenarios tested.
+    All sensitivity values computed analytically — nothing hardcoded.
+
+    THREE-TIER VALIDATION FRAMEWORK:
+    Tier 1 (PK distribution): simulated Cmin consistent with Leenhardt 2022 (PASS).
+    Tier 2 (scenario calibration): baseline risk and NNT within pre-specified
+    tolerance of published targets (PASS).
+    Tier 3 (cross-source PK): MAPE = 6.8% across 5 independent sources (PASS).
+    9/9 validation tests passed.
+
+    COST MODEL:
+    Hospitalization cost: $22,839 (Dulisse & Cosler 2012, PMC3440789), applied
+    as a probability-weighted composite expected value representing the management
+    burden of Grade 3/4 neutropenia (outpatient + hospitalised subset).
+    Sensitivity range: $11,337 (Kuderer 2015 ASH, breast-specific) to $35,899
+    (Flanigan et al. 2024, PMID:38777864, most recent real-world estimate).
+
+
+
+    WORKFLOW (run in order):
+    1. src/01_model_setup.R        — Single source of truth for all parameters;
+                                     integrity checks; master parameter table
+    2. src/02_simulation_engine.R  — Monte Carlo scenario model; PK distribution;
+                                     scenario risk assignment; economic outcomes
+    3. src/03_sensitivity_analysis.R — One-way (tornado) + two-way (heatmap)
+                                     sensitivity analysis; break-even analysis
+    4. src/04_report_generator.R   — Markdown report; paste-ready Results section
+    5. src/05_data_import.R        — PALOMA trial reference data; PK literature;
+                                     AE costs; validation cohort (Leenhardt 2022)
+    6. src/06_validation.R         — Three-tier validation framework; 4-panel figure
+    7. src/07_tdm_algorithm.R      — 5-tier Cmin classification; decision function;
+                                     exposure-response figures; tier distribution
+    8. src/08_cost_visualisation.R — Cost breakdown; waterfall; budget impact;
+                                     NNT infographic; 4-panel economic summary
+   
+
+    REPRODUCIBILITY:
+    All stochastic outputs use set.seed(12345). Parameters saved to
+    data/parameters.RData as single source of truth. All sensitivity
+    values computed from formula — nothing hardcoded. Base R only
+    (no tidyverse dependency in core scripts).
+
+    PRIMARY CITATIONS:
+    Royer et al. Pharmaceuticals. 2021;14(3):181. [PMID:33668400]
+    Courlet et al. Pharmaceutics. 2022;14(7):1317. [PMID:35890213]
+    Leenhardt et al. Ther Drug Monit. 2022;44(4):567. [PMID:35397465]
+    Leenhardt et al. Pharmaceutics. 2022;14(4):841. [PMID:35456675]
+    Finn et al. (PALOMA-2). NEJM. 2016;375:1925. [PMID:27959613]
+    Loibl et al. Ann Oncol. 2020. [PMC7068918]
+    Dulisse & Cosler. J Oncol Pract. 2012. [PMC3440789]
+    Flanigan et al. Support Care Cancer. 2024;32:373. [PMID:38777864]
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Roxygen2: list(markdown = TRUE)
 RoxygenNote: 7.2.3
-Depends: 
+Depends:
     R (>= 4.0.0)
 Imports:
-    tidyverse (>= 1.3.0),
-    data.table (>= 1.14.0),
-    ggplot2 (>= 3.3.0),
-    dplyr (>= 1.0.0),
-    tidyr (>= 1.1.0),
-    scales (>= 1.1.0)
+    grDevices,
+    graphics,
+    stats,
+    utils
 Suggests:
-    knitr (>= 1.30),
-    rmarkdown (>= 2.5),
+    tidyverse (>= 2.0.0),
+    data.table (>= 1.14.0),
+    ggplot2 (>= 3.4.0),
+    knitr (>= 1.40),
+    rmarkdown (>= 2.20),
     testthat (>= 3.0.0)
 VignetteBuilder: knitr
 URL: https://github.com/mohammadbisamaliaslam-pharmadocx/palbociclib-pkpd-simulation
 BugReports: https://github.com/mohammadbisamaliaslam-pharmadocx/palbociclib-pkpd-simulation/issues
-Keywords: 
-    pharmacokinetics, 
-    pharmacodynamics, 
-    therapeutic-drug-monitoring, 
+Keywords:
+    pharmacokinetics,
+    pharmacodynamics,
+    therapeutic-drug-monitoring,
     monte-carlo-simulation,
-    cost-effectiveness-analysis,
+    pharmacoeconomics,
+    decision-analytic-model,
     palbociclib,
     breast-cancer,
+    CDK4-6-inhibitor,
     health-economics,
     population-pk,
     exposure-response,
-    adverse-events,
-    dose-optimization,
-    clinical-decision-support
-Category: 
+    neutropenia,
+    dose-optimisation,
+    clinical-decision-support,
+    sensitivity-analysis,
+    NNT,
+    cost-effectiveness
+Category:
     Health/Medicine,
-    Statistics,
-    Clinical Pharmacology
+    Clinical Pharmacology,
+    Pharmacometrics,
+    Health Economics
 Repository: GitHub
+Note: >
+    Core analysis scripts use base R only (grDevices, graphics, stats, utils).
+    tidyverse and ggplot2 are optional — listed under Suggests for extended
+    visualisation workflows only. All 10 core scripts run without them.
+    Version 2.0.0 represents a complete rewrite from v1.0.0 with corrected
+    PK parameters, verified literature citations, computed sensitivity analysis,
+    three-tier validation framework, and publication-grade documentation.
 Collate:
     'zzz.R'
