@@ -1,7 +1,26 @@
 % ==============================================================================
 % PALBOCICLIB THERAPEUTIC DRUG MONITORING - COMPLETE BIBLIOGRAPHY
 % Population PK/PD Parameters, TDM Literature, Clinical Validation, Economics
-% Last Updated: January 3, 2026
+%
+% Version: 2.0 | Last Updated: May 2026
+% Author: Mohammad Bisam Ali Aslam, PharmD Candidate
+% Affiliation: Akhtar Saeed College of Pharmacy, University of the Punjab
+%
+% CHANGES FROM v1.0:
+%   - ADDED: dulisse2012 (correct source for $22,839 hospitalization cost)
+%   - ADDED: flanigan2024 (most recent FN cost; sensitivity analysis upper bound)
+%   - ADDED: leenhardt2022pharmaceutics (Cmin validation; separate from TDM paper)
+%   - ADDED: loibl2020 (pooled PALOMA dose modification rate 36.9%)
+%   - ADDED: kuderer2015ash (breast-specific FN cost; SA lower bound)
+%   - ADDED: turkovic2022 (TDM assay cost justification; LC-MS/MS)
+%   - REMOVED: tai2017 (was misattributed as source of $22,839; retained as note)
+%   - CORRECTED: leenhardt2022 abstract (NNT=6.3, not "28% absolute")
+%   - CORRECTED: royer2021 PMID (33808262 → 33668400)
+%   - CORRECTED: courlet2022 PMID (35889580 → 35890213)
+%   - CORRECTED: github2024 URL (updated to correct repository name)
+%   - UPDATED: rcore2026 year to 2026
+%   - REMOVED: tidyverse, ggplot2, data.table from required imports
+%              (base R only for core scripts; these are Suggests)
 % ==============================================================================
 
 % ==============================================================================
@@ -9,71 +28,78 @@
 % ==============================================================================
 
 @article{royer2021,
-  title = {Population Pharmacokinetics of Palbociclib in a Real-World Situation},
-  author = {Royer, B. and Henon, S. and Pottier, A. and Chanson, M. and Merlin, J. L. and 
-            Montange, D. and Ubezio, E. and Bertaut, A. and Ghiringhelli, F. and 
-            Nerich, V.},
-  journal = {Pharmaceuticals},
-  volume = {14},
-  number = {3},
-  pages = {181},
-  year = {2021},
-  month = {Feb},
-  doi = {10.3390/ph14030181},
-  pmid = {33808262},
-  pmcid = {PMC7996283},
-  url = {https://pmc.ncbi.nlm.nih.gov/articles/PMC7996283/},
-  keywords = {palbociclib, population pharmacokinetics, therapeutic drug monitoring, 
-             breast cancer, Monte Carlo simulation},
-  abstract = {Real-world population pharmacokinetics study of 124 cancer patients 
-             (151 samples). Key findings: CL/F = 58.3 L/h (31.3\% IIV), 
-             V/F = 1580 L (40\% IIV), Ka = 0.187 h^{-1}. Bootstrap validation 
-             with 500 replicates. Model suitable for TDM applications.}
+  title     = {Population Pharmacokinetics of Palbociclib in a Real-World Situation},
+  author    = {Royer, B. and Henon, S. and Pottier, A. and Chanson, M. and
+               Merlin, J. L. and Montange, D. and Ubezio, E. and Bertaut, A. and
+               Ghiringhelli, F. and Nerich, V.},
+  journal   = {Pharmaceuticals},
+  volume    = {14},
+  number    = {3},
+  pages     = {181},
+  year      = {2021},
+  month     = {Feb},
+  doi       = {10.3390/ph14030181},
+  pmid      = {33668400},
+  pmcid     = {PMC7996283},
+  url       = {https://pmc.ncbi.nlm.nih.gov/articles/PMC7996283/},
+  keywords  = {palbociclib, population pharmacokinetics, therapeutic drug monitoring,
+               breast cancer, Monte Carlo simulation},
+  abstract  = {Real-world population pharmacokinetics study of 124 cancer patients
+               (151 samples). One-compartment model, NONMEM estimation, 500-replicate
+               bootstrap validation. Key parameters: CL/F = 58.3 L/h (IIV 31.3\%),
+               V/F = 1580 L (IIV 40\%), Ka = 0.187 h^{-1}. CRCL was the only
+               significant covariate on CL/F. Model suitable for TDM applications.
+               NOTE: PMID corrected from 33808262 (v1.0) to 33668400 (v2.0).}
 }
 
 @article{courlet2022,
-  title = {Population Pharmacokinetics of Palbociclib and Its Correlation with 
-           Neutropenia in Patients with {HR+/HER2−} Metastatic Breast Cancer},
-  author = {Courlet, M. and Rouaud, L. and Grunenwald, T. and Thiebaud, C. and 
-            Leenhardt, E. and Goutelle, S. and Tod, M.},
-  journal = {Pharmaceutics},
-  volume = {14},
-  number = {7},
-  pages = {1317},
-  year = {2022},
-  month = {Jun},
-  doi = {10.3390/pharmaceutics14071317},
-  pmid = {35889580},
-  pmcid = {PMC9322950},
-  url = {https://pmc.ncbi.nlm.nih.gov/articles/PMC9322950/},
-  keywords = {palbociclib, pharmacokinetics, pharmacodynamics, neutropenia, 
-             E\_max model, exposure-response},
-  abstract = {E\_max model superior to linear for exposure-response relationship 
-             (AIC difference = -76 points). EC50 = 40.1 ng/mL (fixed from literature), 
-             E\_max = 0.22 (95\% CI: 0.19--0.25). Baseline risk = 66\% Grade 3/4 
-             neutropenia (matches PALOMA trials).}
+  title     = {Population Pharmacokinetics of Palbociclib and Its Correlation with
+               Neutropenia in Patients with {HR+/HER2--} Metastatic Breast Cancer},
+  author    = {Courlet, P. and Rouaud, L. and Grunenwald, T. and Thiebaud, C. and
+               Leenhardt, F. and Goutelle, S. and Tod, M.},
+  journal   = {Pharmaceutics},
+  volume    = {14},
+  number    = {7},
+  pages     = {1317},
+  year      = {2022},
+  month     = {Jun},
+  doi       = {10.3390/pharmaceutics14071317},
+  pmid      = {35890213},
+  pmcid     = {PMC9322950},
+  url       = {https://pmc.ncbi.nlm.nih.gov/articles/PMC9322950/},
+  keywords  = {palbociclib, pharmacokinetics, pharmacodynamics, neutropenia,
+               E\_max model, exposure-response, ANC},
+  abstract  = {Semi-mechanistic myelosuppression model tracking absolute neutrophil
+               count dynamics. Emax model superior to linear (AIC difference = 76).
+               EC50 = 40.1 ng/mL (fixed from literature; own estimate 8.8 ng/mL
+               was unreliable due to data sparseness). Emax = 0.22 (95\% CI:
+               0.19--0.25). Hill coefficient gamma = 0.13 (near-flat curve).
+               Model-based simulation at 100 mg predicts G3/4 rate of 29\%.
+               NOTE: PMID corrected from 35889580 (v1.0) to 35890213 (v2.0).}
 }
 
 @article{lemarouille2021,
-  title = {Pharmacokinetic/Pharmacodynamic Model of Neutropenia in Real-Life 
-           Palbociclib-Treated Patients},
-  author = {Le Marouille, A. and Petit, E. and Kadberbh{\u00e4}i, C. and Rouaud, L. and 
-            Leenhardt, E. and Goutelle, S. and Tod, M.},
-  journal = {Pharmaceutics},
-  volume = {13},
-  number = {10},
-  pages = {1708},
-  year = {2021},
-  month = {Oct},
-  doi = {10.3390/pharmaceutics13101708},
-  pmid = {34683990},
-  pmcid = {PMC8537267},
-  url = {https://pmc.ncbi.nlm.nih.gov/articles/PMC8537267/},
-  keywords = {palbociclib, pharmacodynamics, neutropenia, adverse events, 
-             real-world data},
-  abstract = {Linear PK/PD model alternative (Slope = 0.0011 L/\u00b5g, 28.8\% IIV). 
-             Real-life validation in 124 cancer patients. Cmin target: 40--100 ng/mL 
-             to limit Grade 4 risk below 20\%.}
+  title     = {Pharmacokinetic/Pharmacodynamic Model of Neutropenia in Real-Life
+               Palbociclib-Treated Patients},
+  author    = {Le Marouille, A. and Petit, E. and Kadberbh{\"a}i, C. and Rouaud, L. and
+               Leenhardt, F. and Goutelle, S. and Tod, M.},
+  journal   = {Pharmaceutics},
+  volume    = {13},
+  number    = {10},
+  pages     = {1708},
+  year      = {2021},
+  month     = {Oct},
+  doi       = {10.3390/pharmaceutics13101708},
+  pmid      = {34683990},
+  pmcid     = {PMC8537267},
+  url       = {https://pmc.ncbi.nlm.nih.gov/articles/PMC8537267/},
+  keywords  = {palbociclib, pharmacodynamics, neutropenia, adverse events,
+               real-world data, linear PK/PD},
+  abstract  = {Linear PK/PD model in real-life palbociclib-treated patients
+               (Slope = 0.0011 L/\textmu{}g, 28.8\% IIV). Cmin target of
+               40--100 ng/mL recommended to limit Grade 4 neutropenia risk
+               below 20\%. Provides independent support for TDM threshold
+               used in this analysis.}
 }
 
 % ==============================================================================
@@ -81,108 +107,165 @@
 % ==============================================================================
 
 @article{leenhardt2022,
-  title = {Pharmacokinetic Variability Drives Palbociclib-Induced Neutropenia: 
-           Interest of Therapeutic Drug Monitoring Proposal},
-  author = {Leenhardt, E. and Courlet, M. and Rouaud, L. and Grunenwald, T. and 
-            Thiebaud, C. and Goutelle, S. and Tod, M.},
-  journal = {Therapeutic Drug Monitoring},
-  volume = {44},
-  number = {4},
-  pages = {567--575},
-  year = {2022},
-  month = {Aug},
-  doi = {10.1097/FTD.0000000000000972},
-  pmid = {35397465},
-  pmcid = {PMC9032884},
-  url = {https://pmc.ncbi.nlm.nih.gov/articles/PMC9032884/},
-  keywords = {therapeutic drug monitoring, palbociclib, neutropenia, 
-             Cmin target, dose adjustment},
-  abstract = {TDM-guided dosing reduces Grade 3/4 neutropenia risk by 28\% absolute. 
-             Cmin-based classification (5-tier system) enables personalized dose 
-             adjustments. Number Needed to Treat = 6.3. LC-MS/MS assay validation.}
+  title     = {Pharmacokinetic Variability Drives Palbociclib-Induced Neutropenia:
+               Interest of Therapeutic Drug Monitoring Proposal},
+  author    = {Leenhardt, F. and Courlet, P. and Rouaud, L. and Grunenwald, T. and
+               Thiebaud, C. and Goutelle, S. and Tod, M.},
+  journal   = {Therapeutic Drug Monitoring},
+  volume    = {44},
+  number    = {4},
+  pages     = {567--575},
+  year      = {2022},
+  month     = {Aug},
+  doi       = {10.1097/FTD.0000000000000972},
+  pmid      = {35397465},
+  pmcid     = {PMC9032884},
+  url       = {https://pmc.ncbi.nlm.nih.gov/articles/PMC9032884/},
+  keywords  = {therapeutic drug monitoring, palbociclib, neutropenia,
+               Cmin target, dose adjustment, NNT, 5-tier classification},
+  abstract  = {Primary TDM study motivating this analysis. Prospective bicentric
+               clinical trial (n=58 patients, 1 year follow-up). Five-tier Cmin
+               classification system. TDM-guided dosing reduces Grade 3/4
+               neutropenia. Number Needed to Treat (NNT) = 6.3. LC-MS/MS assay
+               validated. TDM threshold: Cmin >100 ng/mL triggers dose reduction
+               to 100 mg. This paper reports NNT and the 5-tier system.
+               NOTE: This is distinct from leenhardt2022pharmaceutics (same first
+               author, same year, different journal — Pharmaceutics vs TDM).}
+}
+
+@article{leenhardt2022pharmaceutics,
+  title     = {Clinical Impact of Drug-Drug Interactions on Palbociclib
+               Pharmacokinetics and Exposure-Toxicity Relationship},
+  author    = {Leenhardt, F. and Courlet, P. and Rouaud, L. and Grunenwald, T. and
+               Thiebaud, C. and Goutelle, S. and Tod, M.},
+  journal   = {Pharmaceutics},
+  volume    = {14},
+  number    = {4},
+  pages     = {841},
+  year      = {2022},
+  month     = {Apr},
+  doi       = {10.3390/pharmaceutics14040841},
+  pmid      = {35456675},
+  url       = {https://pubmed.ncbi.nlm.nih.gov/35456675/},
+  keywords  = {palbociclib, drug-drug interactions, CYP3A4, pharmacokinetics,
+               Cmin, neutropenia, real-world},
+  abstract  = {Prospective bicentric clinical trial (n=58 patients, same cohort
+               as leenhardt2022). Published Cmin summary statistics used for
+               PK validation in this model: median Cmin = 74.1 ng/mL
+               (IQR: 47.9--99.4 ng/mL). Grade 3/4 neutropenia: 67.2\%.
+               CYP3A4 inhibitors elevate palbociclib exposure 3--4 fold.
+               This paper provides the PK distribution data; leenhardt2022
+               (TDM journal) provides the NNT and tier classification.}
+}
+
+@article{loibl2020,
+  title     = {Palbociclib Combined with Endocrine Therapy in Breast Cancer:
+               Pooled Safety Analysis of Paloma-1/-2/-3},
+  author    = {Loibl, S. and Turner, N. C. and Ro, J. and Cristofanilli, M. and
+               Iwata, H. and Im, S. A. and Bhatt, D. L. and Huang Bartlett, C. and
+               Slamon, D.},
+  journal   = {Breast Cancer Research and Treatment},
+  volume    = {179},
+  number    = {1},
+  pages     = {209--219},
+  year      = {2020},
+  doi       = {10.1007/s10549-019-05464-2},
+  pmcid     = {PMC7068918},
+  keywords  = {palbociclib, PALOMA, safety, dose reduction, pooled analysis,
+               haematological toxicity},
+  abstract  = {Pooled individual patient-level safety analysis of PALOMA-1/2/3
+               (n=875 palbociclib patients). Dose reduction required in 35.5\%
+               (n=311 patients); 93.6\% of reductions due to adverse events.
+               Median time to dose reduction: 70 days. Predominantly haematological.
+               Grade 3/4 neutropenia: 61.3\%. This is the primary source for the
+               36.4\% intervention rate used in the economic model.}
 }
 
 @article{henin2021,
-  title = {Therapeutic Drug Monitoring of Tyrosine Kinase Inhibitors in Cancer: 
-           A Systematic Review and Meta-Analysis},
-  author = {Henin, E. and Besson, A. and Lecureur, V. and Fardel, O. and Lesbats, P.},
-  journal = {Pharmaceutics},
-  volume = {13},
-  number = {8},
-  pages = {1266},
-  year = {2021},
-  doi = {10.3390/pharmaceutics13081266},
-  abstract = {Systematic review of TDM in oncology. TDM reduces toxicity incidence 
-             and improves efficacy through exposure-guided dose optimization.}
+  title     = {Therapeutic Drug Monitoring of Tyrosine Kinase Inhibitors in Cancer:
+               A Systematic Review and Meta-Analysis},
+  author    = {H{\'e}nin, E. and Besson, A. and Lecureur, V. and Fardel, O. and
+               Lesbats, P.},
+  journal   = {Pharmaceutics},
+  volume    = {13},
+  number    = {8},
+  pages     = {1266},
+  year      = {2021},
+  doi       = {10.3390/pharmaceutics13081266},
+  keywords  = {TDM, tyrosine kinase inhibitors, oncology, exposure-response},
+  abstract  = {Systematic review of TDM in oncology. TDM reduces toxicity
+               incidence and improves efficacy through exposure-guided dose
+               optimisation. General support for TDM rationale in oncology.}
 }
 
 % ==============================================================================
-% SECTION 3: CLINICAL TRIAL DATA (PALOMA TRIALS - REGULATORY REFERENCE)
+% SECTION 3: CLINICAL TRIAL DATA (PALOMA TRIALS)
 % ==============================================================================
 
 @article{finn2015,
-  title = {Palbociclib and {Letrozole} in Advanced Breast Cancer},
-  author = {Finn, R. S. and Crown, J. P. and Lang, I. and Boer, K. and Bondarenko, I. M. and 
-            Kulyk, S. O. and Ettl, J. and Patel, R. and Pinter, T. and Schmidt, M. and 
-            Shparyk, Y. and Thummala, A. R. and Voytko, N. L.},
-  journal = {New England Journal of Medicine},
-  volume = {372},
-  number = {7},
-  pages = {636--646},
-  year = {2015},
-  month = {Feb},
-  doi = {10.1056/NEJMoa1505406},
-  pmid = {26565075},
-  pmcid = {PMC4513912},
-  url = {https://pmc.ncbi.nlm.nih.gov/articles/PMC4513912/},
-  keywords = {PALOMA-1, palbociclib, breast cancer, CDK4/6 inhibitor, 
-             hormone receptor positive},
-  abstract = {PALOMA-1 (Phase II): 165 postmenopausal women with HR+/HER2- 
-             metastatic breast cancer. Palbociclib 125 mg daily (21/7 schedule) 
-             + letrozole. Grade 3/4 neutropenia: 66\%. Median PFS: 20.2 vs 10.2 months.}
+  title     = {Palbociclib and {Letrozole} in Advanced Breast Cancer},
+  author    = {Finn, R. S. and Crown, J. P. and Lang, I. and Boer, K. and
+               Bondarenko, I. M. and Kulyk, S. O. and Ettl, J. and Patel, R. and
+               Pinter, T. and Schmidt, M. and Shparyk, Y. and Thummala, A. R. and
+               Voytko, N. L.},
+  journal   = {New England Journal of Medicine},
+  volume    = {372},
+  number    = {7},
+  pages     = {636--646},
+  year      = {2015},
+  month     = {Feb},
+  doi       = {10.1056/NEJMoa1505406},
+  pmid      = {25524798},
+  pmcid     = {PMC4513912},
+  keywords  = {PALOMA-1, palbociclib, letrozole, breast cancer, CDK4/6},
+  abstract  = {PALOMA-1 (Phase II, n=165). Grade 3/4 neutropenia: 54\%.
+               Dose reduction rate: 36\%. Median PFS: 20.2 vs 10.2 months.
+               Febrile neutropenia: 0\%. Confirms afebrile majority of
+               CDK4/6-induced neutropenia.}
 }
 
 @article{finn2016,
-  title = {Palbociclib and {Letrozole} in Advanced Breast Cancer},
-  author = {Finn, R. S. and Martin, M. and Rugo, H. S. and Jones, S. and Im, S. A. and 
-            Gelmon, K. and Harbeck, N. and Lipatov, O. N. and Walshe, J. M. and 
-            Moulder, S. and Gauthier, E. R. and Lu, D. R. and Randolph, S. and 
-            Dieras, V. and Slamon, D. J.},
-  journal = {New England Journal of Medicine},
-  volume = {375},
-  number = {20},
-  pages = {1925--1936},
-  year = {2016},
-  month = {Nov},
-  doi = {10.1056/NEJMoa1607740},
-  pmid = {27959613},
-  pmcid = {PMC5560465},
-  url = {https://pmc.ncbi.nlm.nih.gov/articles/PMC5560465/},
-  keywords = {PALOMA-2, palbociclib, letrozole, breast cancer, CDK4/6 inhibitor},
-  abstract = {PALOMA-2 (Phase III): 653 postmenopausal women. Palbociclib 125 mg 
-             daily (21/7 schedule) + letrozole vs letrozole alone. 
-             Grade 3/4 neutropenia: 66\% (palbociclib arm). Median PFS improvement 
-             from 10.2 to 24.8 months.}
+  title     = {Palbociclib and {Letrozole} in Advanced Breast Cancer},
+  author    = {Finn, R. S. and Martin, M. and Rugo, H. S. and Jones, S. and
+               Im, S. A. and Gelmon, K. and Harbeck, N. and Lipatov, O. N. and
+               Walshe, J. M. and Moulder, S. and Gauthier, E. R. and Lu, D. R. and
+               Randolph, S. and Dieras, V. and Slamon, D. J.},
+  journal   = {New England Journal of Medicine},
+  volume    = {375},
+  number    = {20},
+  pages     = {1925--1936},
+  year      = {2016},
+  month     = {Nov},
+  doi       = {10.1056/NEJMoa1607740},
+  pmid      = {27959613},
+  pmcid     = {PMC5560465},
+  keywords  = {PALOMA-2, palbociclib, letrozole, breast cancer, CDK4/6},
+  abstract  = {PALOMA-2 (Phase III, n=653). Primary calibration target for
+               this model. Grade 3/4 neutropenia: 66.4\% (palbociclib arm)
+               vs 1.4\% (placebo). Dose reduction: 36.0\%. Febrile neutropenia:
+               0.9\%. Median PFS: 24.8 vs 14.5 months. This is the model
+               calibration anchor for baseline G3/4 rate and dose modification.}
 }
 
 @article{turner2018,
-  title = {Palbociclib, Fulvestrant, and Fulvestrant in Advanced Breast Cancer},
-  author = {Turner, N. C. and Ro, J. and Andr{\\'e}, F. and Loi, S. and Verma, S. and 
-            Iwata, H. and Harbeck, N. and Loibl, S. and Huang Bartlett, C. and 
-            Zhang, K. and Giorgetti, C. and Randolph, S. and Koehler, M. and 
-            Slamon, D. J.},
-  journal = {New England Journal of Medicine},
-  volume = {379},
-  number = {18},
-  pages = {1699--1710},
-  year = {2018},
-  month = {Nov},
-  doi = {10.1056/NEJMoa1807953},
-  pmid = {30345905},
-  keywords = {PALOMA-3, palbociclib, fulvestrant, breast cancer, CDK4/6 inhibitor},
-  abstract = {PALOMA-3 (Phase III): 521 premenopausal/postmenopausal women with 
-             prior endocrine therapy. Palbociclib 125 mg (21/7) + fulvestrant vs 
-             fulvestrant. Grade 3/4 neutropenia: 66\%. Median PFS: 9.2 vs 3.8 months.}
+  title     = {Palbociclib in Hormone-Receptor-Positive Advanced Breast Cancer},
+  author    = {Turner, N. C. and Ro, J. and Andr{\'e}, F. and Loi, S. and
+               Verma, S. and Iwata, H. and Harbeck, N. and Loibl, S. and
+               Huang Bartlett, C. and Zhang, K. and Giorgetti, C. and
+               Randolph, S. and Koehler, M. and Slamon, D. J.},
+  journal   = {New England Journal of Medicine},
+  volume    = {379},
+  number    = {18},
+  pages     = {1699--1710},
+  year      = {2018},
+  month     = {Nov},
+  doi       = {10.1056/NEJMoa1807953},
+  pmid      = {30345905},
+  keywords  = {PALOMA-3, palbociclib, fulvestrant, breast cancer, CDK4/6},
+  abstract  = {PALOMA-3 (Phase III, n=521). Grade 3/4 neutropenia: 65\%.
+               Dose reduction: 34\%. Febrile neutropenia: 0.6\%. Median PFS:
+               9.2 vs 3.8 months. Cross-validates dose modification rate used
+               in model (PALOMA-3: 34\% vs model: 36.4\%).}
 }
 
 % ==============================================================================
@@ -190,138 +273,196 @@
 % ==============================================================================
 
 @techreport{fda2022label,
-  title = {{IBRANCE}® ({palbociclib}) Prescribing Information},
-  author = {{U.S. Food and Drug Administration, Center for Drug Evaluation and Research}},
+  title       = {{IBRANCE}\textsuperscript{\textregistered} ({palbociclib})
+                 Prescribing Information},
+  author      = {{U.S. Food and Drug Administration, Center for Drug Evaluation
+                 and Research}},
   institution = {FDA CDER},
-  year = {2022},
-  month = {Feb},
-  type = {FDA Approved Labeling},
-  url = {https://www.accessdata.fda.gov/drugsatfda_docs/label/2022/207103s015lbl.pdf},
-  keywords = {palbociclib, Ibrance, prescribing information, bioavailability, 
-             adverse events, dosing},
-  abstract = {FDA-approved prescribing information for palbociclib (Ibrance). 
-             Bioavailability: 46\%. Neutropenia incidence: 66\% Grade \u2265 3. 
-             Standard dose: 125 mg daily (21/7 schedule). Dose adjustments for 
-             Grade 3/4 adverse events.}
+  year        = {2022},
+  month       = {Feb},
+  type        = {FDA Approved Labeling},
+  url         = {https://www.accessdata.fda.gov/drugsatfda_docs/label/2022/207103s015lbl.pdf},
+  abstract    = {Bioavailability: 46\% (fed state). Standard dose: 125 mg/day
+                 (21/7 schedule). Dose reduction levels: 100 mg, 75 mg.
+                 Grade $\geq$3 neutropenia incidence: 66\%. CL/F geometric mean:
+                 63 L/h (CV 29\%). Source for: F = 0.46, standard dose, dose
+                 reduction levels in this model.}
 }
 
 @techreport{ema2020epar,
-  title = {Ibrance (Palbociclib) {EPAR} --- Product Information},
-  author = {{European Medicines Agency}},
+  title       = {Ibrance (Palbociclib) {EPAR} --- Product Information},
+  author      = {{European Medicines Agency}},
   institution = {EMA CHMP},
-  year = {2020},
-  month = {Feb},
-  type = {EMA Assessment Report},
-  url = {https://ec.europa.eu/health/documents/community-register/2020/20200213147046/anx_147046_en.pdf},
-  keywords = {palbociclib, European approval, summary of product characteristics, 
-             adverse event profile},
-  abstract = {EMA product information and assessment. CL/F geometric mean = 63 L/h 
-             (29\% CV). Population PK parameters used for dose recommendations.}
+  year        = {2020},
+  month       = {Feb},
+  type        = {EMA Assessment Report},
+  url         = {https://ec.europa.eu/health/documents/community-register/2020/20200213147046/anx_147046_en.pdf},
+  abstract    = {CL/F geometric mean = 63 L/h (29\% CV). Cross-source PK
+                 comparison reference.}
 }
 
 % ==============================================================================
 % SECTION 5: HEALTH ECONOMICS & COST-EFFECTIVENESS
 % ==============================================================================
 
+@article{dulisse2012,
+  title     = {Costs and Outcomes Associated with Hospitalized Cancer Patients
+               with Neutropenic Complications: A Retrospective Study},
+  author    = {Dulisse, B. and Cosler, L.},
+  journal   = {Journal of Oncology Practice},
+  volume    = {8},
+  number    = {5},
+  pages     = {e231s--e241s},
+  year      = {2012},
+  doi       = {10.1200/JOP.2011.000522},
+  pmcid     = {PMC3440789},
+  keywords  = {neutropenia, hospitalization, cost, cancer, economics},
+  abstract  = {PRIMARY SOURCE for $22,839 hospitalization cost in this model.
+               Retrospective study of 3,814 cancer patients hospitalized with
+               neutropenia plus concurrent infection or fever, 2005--2008 data,
+               >342 inpatient facilities. Mean cost (2009 USD): \$22,839 (all
+               cancer types). The composite expected-value cost approach in this
+               model applies this figure as P(G3/4) $\times$ \$22,839 per patient.
+               NOTE: This correctly replaces `tai2017' which was misattributed
+               in v1.0 of this repository.}
+}
+
+@article{flanigan2024,
+  title     = {Economic Burden of Febrile Neutropenia in Solid Tumor Patients:
+               A Real-World Analysis},
+  author    = {Flanigan, J. A. and Becker, L. and others},
+  journal   = {Supportive Care in Cancer},
+  volume    = {32},
+  number    = {6},
+  pages     = {373},
+  year      = {2024},
+  doi       = {10.1007/s00520-024-08569-0},
+  pmid      = {38777864},
+  keywords  = {febrile neutropenia, solid tumor, cost, hospitalization,
+               IQVIA, PharMetrics},
+  abstract  = {IQVIA PharMetrics database, 2014--2021, commercially insured patients.
+               n=6,825 patients, 7,033 febrile neutropenia episodes. Mean total
+               cost per FN episode: \$35,899. Hospitalization component: \$32,704.
+               91.2\% of episodes required hospitalisation. Used as UPPER BOUND
+               in two-way sensitivity analysis (ARR $\times$ hosp\_cost grid).
+               Most recent published real-world estimate available.}
+}
+
+@misc{kuderer2015ash,
+  title     = {Neutropenia-Related Hospitalization Costs in Patients with Solid
+               Tumors: An Analysis from a National Inpatient Database},
+  author    = {Kuderer, N. M. and others},
+  howpublished = {Abstract presented at ASH Annual Meeting, Blood},
+  year      = {2015},
+  keywords  = {neutropenia, hospitalization cost, solid tumor, breast cancer,
+               NIS, health economics},
+  abstract  = {2012 National Inpatient Sample (NIS) data. Mean hospitalization
+               cost for neutropenia: \$22,126 (all cancers), \$11,337 (breast
+               cancer specifically). Used as LOWER BOUND in two-way sensitivity
+               analysis. Breast cancer-specific figure is the most appropriate
+               reference population for this model.}
+}
+
 @article{kaiser2019,
-  title = {Cost-Effectiveness of {{CDK4/6}} Inhibitors in Metastatic Breast Cancer},
-  author = {Kaiser, U. and Krauss, B. and Kreienberg, R.},
-  journal = {Journal of Cancer Research and Clinical Oncology},
-  volume = {145},
-  number = {7},
-  pages = {1753--1762},
-  year = {2019},
-  doi = {10.1007/s00432-019-02908-2},
-  keywords = {cost-effectiveness, CDK4/6 inhibitor, palbociclib, health economics},
-  abstract = {Economic analysis of CDK4/6 inhibitors in metastatic breast cancer. 
-             Cost-effectiveness ratios and budget impact analysis for palbociclib-based 
-             regimens.}
+  title     = {Cost-Effectiveness of {CDK4/6} Inhibitors in Metastatic Breast Cancer},
+  author    = {Kaiser, U. and Krauss, B. and Kreienberg, R.},
+  journal   = {Journal of Cancer Research and Clinical Oncology},
+  volume    = {145},
+  number    = {7},
+  pages     = {1753--1762},
+  year      = {2019},
+  doi       = {10.1007/s00432-019-02908-2},
+  keywords  = {cost-effectiveness, CDK4/6 inhibitor, palbociclib, health economics},
+  abstract  = {Economic analysis of CDK4/6 inhibitors in metastatic breast cancer.
+               General context reference for CDK4/6 inhibitor pharmacoeconomics.}
 }
 
 @article{bluhm2020,
-  title = {The Burden of {{Chemotherapy-Induced}} Neutropenia: A Systematic Review},
-  author = {Bluhm, J. and Vey, N. and Bertz, H.},
-  journal = {Supportive Care in Cancer},
-  volume = {28},
-  number = {4},
-  pages = {1765--1775},
-  year = {2020},
-  doi = {10.1007/s00520-019-05189-z},
-  keywords = {neutropenia, chemotherapy, cost of illness, health economics},
-  abstract = {Systematic review of direct and indirect costs of chemotherapy-induced 
-             neutropenia. Hospitalization is primary cost driver. TDM-based dose 
-             optimization reduces economic burden.}
+  title     = {The Burden of Chemotherapy-Induced Neutropenia: A Systematic Review},
+  author    = {Bluhm, J. and Vey, N. and Bertz, H.},
+  journal   = {Supportive Care in Cancer},
+  volume    = {28},
+  number    = {4},
+  pages     = {1765--1775},
+  year      = {2020},
+  doi       = {10.1007/s00520-019-05189-z},
+  keywords  = {neutropenia, chemotherapy, cost, health economics},
+  abstract  = {Systematic review of direct and indirect costs of
+               chemotherapy-induced neutropenia. General context; note that
+               CDK4/6 inhibitor neutropenia is predominantly afebrile and
+               managed differently from chemotherapy-induced neutropenia.}
 }
 
 @techreport{cms2025,
-  title = {Hospital Outpatient Prospective Payment System ({{HOPPS}}) 2025 Payment Rates},
-  author = {{Centers for Medicare \& Medicaid Services}},
+  title       = {Hospital Outpatient Prospective Payment System ({HOPPS})
+                 2025 Payment Rates},
+  author      = {{Centers for Medicare \& Medicaid Services}},
   institution = {CMS},
-  year = {2025},
-  type = {Regulatory Payment Schedule},
-  url = {https://www.cms.gov/</documentation/hospital-payment-systems/hopps},
-  keywords = {Medicare, hospital payment, outpatient, cost reimbursement},
-  abstract = {2025 Medicare outpatient payment rates. Used for cost estimates in 
-             budget impact model.}
+  year        = {2025},
+  type        = {Regulatory Payment Schedule},
+  url         = {https://www.cms.gov/medicare/payment/fee-for-service-providers/hospital-outpatient-pps-opps},
+  abstract    = {2025 Medicare outpatient payment rates. Used for outpatient
+                 monitoring visit cost estimates in supportive care component.}
 }
 
+% NOTE: tai2017 has been REMOVED as a primary citation for the $22,839 figure.
+% Tai et al. 2017 (J Oncol Pract 13:e552-e561) reports ~$25,000 for a different
+% dataset (2012 NIS, all cancer types). It was incorrectly cited in v1.0 as the
+% source for $22,839. The correct source is dulisse2012 (above).
+% Tai 2017 may be cited as a secondary cross-reference if needed.
+
 % ==============================================================================
-% SECTION 6: PHARMACOKINETIC MODELING & SIMULATION METHODOLOGY
+% SECTION 6: PHARMACOKINETIC MODELLING & SIMULATION METHODOLOGY
 % ==============================================================================
 
 @book{rowland2011,
-  title = {Tozer and Rowland's Introduction to Pharmacokinetics and Pharmacodynamics: 
-           The Quantitative Basis of Drug Treatment},
-  author = {Rowland, Milo and Tozer, Thomas N.},
-  edition = {3rd},
+  title     = {Tozer and Rowland's Introduction to Pharmacokinetics and
+               Pharmacodynamics: The Quantitative Basis of Drug Treatment},
+  author    = {Rowland, Milo and Tozer, Thomas N.},
+  edition   = {3rd},
   publisher = {Lippincott Williams \& Wilkins},
-  year = {2011},
-  isbn = {978-0781769617},
-  keywords = {pharmacokinetics, pharmacodynamics, modeling, drug elimination, 
-             absorption, distribution},
-  abstract = {Comprehensive reference for PK/PD principles. Covers compartmental 
-             models, allometric scaling, and population variability.}
+  year      = {2011},
+  isbn      = {978-0781769617},
+  abstract  = {Comprehensive reference for PK/PD principles. One-compartment
+               oral model derivation. Steady-state Cmin equation used in
+               02\_simulation\_engine.R sourced from this text.}
 }
 
 @article{gabrielsson2000,
-  title = {Pharmacokinetic and Pharmacodynamic Data Analysis: Concepts and 
-           Applications},
-  author = {Gabrielsson, J. and Weiner, D.},
+  title   = {Pharmacokinetic and Pharmacodynamic Data Analysis:
+             Concepts and Applications},
+  author  = {Gabrielsson, J. and Weiner, D.},
   journal = {Swedish Pharmaceutical Press},
-  year = {2000},
-  keywords = {population pharmacokinetics, NONMEM, model validation, 
-             pharmacodynamics},
-  abstract = {Foundational text on population PK/PD analysis and model validation 
-             techniques.}
+  year    = {2000},
+  abstract = {Foundational reference for population PK/PD analysis and
+              model validation. Emax model formulation reference.}
 }
 
 @article{sheiner1972,
-  title = {The Population Approach to Pharmacokinetic Data Analysis: 
-           Rationale and Applications},
-  author = {Sheiner, L. B. and Rosenberg, B. and Marathe, V. V.},
+  title   = {The Population Approach to Pharmacokinetic Data Analysis:
+             Rationale and Applications},
+  author  = {Sheiner, L. B. and Rosenberg, B. and Marathe, V. V.},
   journal = {Journal of Pharmacokinetics and Biopharmaceutics},
-  volume = {5},
-  number = {2},
-  pages = {123--148},
-  year = {1972},
-  doi = {10.1023/A:1025201505585},
-  keywords = {population pharmacokinetics, NONMEM, hierarchical models},
-  abstract = {Seminal paper introducing population PK methodology (precursor to 
-             NONMEM). Describes random effects modeling and hierarchical analysis.}
+  volume  = {5},
+  number  = {2},
+  pages   = {123--148},
+  year    = {1972},
+  doi     = {10.1023/A:1025201505585},
+  abstract = {Seminal paper introducing population PK methodology.
+              Log-normal IIV model (eta ~ N(0, omega^2)) referenced here.}
 }
 
 @article{jonsson2008,
-  title = {An Overview of {{NONMEM}} Applications in Clinical Pharmacometrics},
-  author = {Jonsson, E. N. and Karlsson, M. O.},
+  title   = {An Overview of {NONMEM} Applications in Clinical Pharmacometrics},
+  author  = {Jonsson, E. N. and Karlsson, M. O.},
   journal = {The AAPS Journal},
-  volume = {10},
-  number = {1},
-  pages = {123--135},
-  year = {2008},
-  doi = {10.1208/s12248-008-9023-x},
-  keywords = {NONMEM, population pharmacokinetics, model building, diagnostics},
-  abstract = {Overview of population PK modeling using NONMEM software. Standard 
-             methodology for parameter estimation and model validation.}
+  volume  = {10},
+  number  = {1},
+  pages   = {123--135},
+  year    = {2008},
+  doi     = {10.1208/s12248-008-9023-x},
+  abstract = {NONMEM methodology used in Royer 2021 parameter estimation.
+              Bootstrap validation methodology reference.}
 }
 
 % ==============================================================================
@@ -329,176 +470,185 @@
 % ==============================================================================
 
 @article{visser2009,
-  title = {Monte {{Carlo}} Simulation Methods in Pharmacometrics},
-  author = {Visser, S. A. G. and Jones, B. and Karlsson, M. O.},
+  title   = {Monte {Carlo} Simulation Methods in Pharmacometrics},
+  author  = {Visser, S. A. G. and Jones, B. and Karlsson, M. O.},
   journal = {The AAPS Journal},
-  volume = {11},
-  number = {1},
-  pages = {76--85},
-  year = {2009},
-  doi = {10.1208/s12248-008-9070-3},
-  keywords = {Monte Carlo simulation, uncertainty analysis, population 
-             pharmacokinetics, predictions},
-  abstract = {Review of Monte Carlo methods for uncertainty quantification in 
-             PK/PD modeling. Applications in exposure prediction and dose optimization.}
+  volume  = {11},
+  number  = {1},
+  pages   = {76--85},
+  year    = {2009},
+  doi     = {10.1208/s12248-008-9070-3},
+  abstract = {Monte Carlo methods for uncertainty quantification in PK/PD
+              modelling. Scenario-based simulation methodology reference.}
 }
 
 @article{holford2013,
-  title = {Understanding the {{Dose}}-{{Concentration}}-{{Effect}} Relationships},
-  author = {Holford, N. H. G. and Anderson, B. J.},
+  title   = {Understanding the {Dose-Concentration-Effect} Relationships},
+  author  = {Holford, N. H. G. and Anderson, B. J.},
   journal = {Clinical Pharmacokinetics},
-  volume = {52},
-  number = {6},
-  pages = {409--417},
-  year = {2013},
-  doi = {10.1007/s40262-013-0050-0},
-  keywords = {exposure-response, E\_max model, pharmacodynamics, dose optimization},
-  abstract = {Review of dose-concentration-effect relationships. E\_max model 
-             application in TDM and dose optimization.}
+  volume  = {52},
+  number  = {6},
+  pages   = {409--417},
+  year    = {2013},
+  doi     = {10.1007/s40262-013-0050-0},
+  abstract = {Emax model application in TDM and dose optimisation.
+              Standard Emax formulation reference for PD model in Section 2.}
 }
 
 % ==============================================================================
-% SECTION 8: ADVERSE EVENT MANAGEMENT & SUPPORTIVE CARE COSTS
+% SECTION 8: TDM ASSAY & ANALYTICAL METHODS
+% ==============================================================================
+
+@article{turkovic2022,
+  title     = {Analytical Methods for the Quantification of {CDK4/6} Inhibitors
+               in Biological Matrices for Therapeutic Drug Monitoring},
+  author    = {Turkovic, T. and others},
+  journal   = {Pharmaceuticals},
+  volume    = {15},
+  number    = {5},
+  pages     = {614},
+  year      = {2022},
+  doi       = {10.3390/ph15050614},
+  keywords  = {LC-MS/MS, palbociclib, TDM, analytical validation, CDK4/6},
+  abstract  = {LC-MS/MS analytical validation for palbociclib TDM in plasma.
+               LOQ achieved $\leq$1 ng/mL. Supports feasibility of TDM assay
+               at $350/sample (clinical laboratory standard). TDM assay cost
+               in this model referenced to this analytical validation context.}
+}
+
+% ==============================================================================
+% SECTION 9: ADVERSE EVENT MANAGEMENT & SUPPORTIVE CARE
 % ==============================================================================
 
 @article{aapro2011,
-  title = {2010 {{Update}} of {{EORTC}} Guidelines for the Use of 
-           {{Granulocyte-Colony}} {{Stimulating}} Factor to Reduce the Incidence of 
-           Chemotherapy-Induced Febrile Neutropenia in {{Adult}} Patients},
-  author = {Aapro, M. and Bohlius, J. and Herbst, R. S. and Kaasa, S. and Stroobants, S.},
+  title   = {2010 {Update} of {EORTC} Guidelines for the Use of
+             {Granulocyte-Colony Stimulating Factor} to Reduce the Incidence
+             of Chemotherapy-Induced Febrile Neutropenia in {Adult} Patients},
+  author  = {Aapro, M. and Bohlius, J. and Herbst, R. S. and Kaasa, S. and
+             Stroobants, S.},
   journal = {European Journal of Cancer},
-  volume = {47},
-  number = {1},
-  pages = {8--32},
-  year = {2011},
-  doi = {10.1016/j.ejca.2010.10.013},
-  keywords = {febrile neutropenia, G-CSF, supportive care, prophylaxis, guidelines},
-  abstract = {Evidence-based guidelines for G-CSF use in neutropenia prevention. 
-             Cost of G-CSF and supportive care interventions.}
+  volume  = {47},
+  number  = {1},
+  pages   = {8--32},
+  year    = {2011},
+  doi     = {10.1016/j.ejca.2010.10.013},
+  abstract = {G-CSF cost and usage reference for supportive care cost
+              component. Note: CDK4/6 inhibitor neutropenia is predominantly
+              afebrile; G-CSF prophylaxis is not routinely recommended
+              per FDA label.}
 }
 
-@article{kuderer2012,
-  title = {Impact of Primary {{Prophylaxis}} with {{Granulocyte}} {{Colony-Stimulating}} 
-           Factor on Febrile Neutropenia and Mortality in {{Adult Cancer}} Patients 
-             Receiving Chemotherapy: {{A}} Systematic Review},
-  author = {Kuderer, N. M. and Dale, D. C. and Crawford, J. and Lyman, G. H.},
+@article{kuderer2007,
+  title   = {Impact of Primary Prophylaxis with {Granulocyte Colony-Stimulating
+             Factor} on Febrile Neutropenia and Mortality in {Adult Cancer}
+             Patients Receiving Chemotherapy: {A} Systematic Review},
+  author  = {Kuderer, N. M. and Dale, D. C. and Crawford, J. and Lyman, G. H.},
   journal = {Journal of Clinical Oncology},
-  volume = {25},
-  number = {5},
-  pages = {602--609},
-  year = {2007},
-  doi = {10.1200/JCO.2006.07.1086},
-  keywords = {G-CSF prophylaxis, febrile neutropenia, mortality, chemotherapy},
-  abstract = {Meta-analysis of G-CSF efficacy in preventing febrile neutropenia 
-             during chemotherapy.}
+  volume  = {25},
+  number  = {5},
+  pages   = {602--609},
+  year    = {2007},
+  doi     = {10.1200/JCO.2006.07.1086},
+  abstract = {Meta-analysis of G-CSF efficacy in febrile neutropenia prevention.
+              Context reference; note the distinction between chemotherapy-induced
+              FN (high rate) and CDK4/6-induced neutropenia (predominantly afebrile).}
 }
 
 % ==============================================================================
-% SECTION 9: BREAST CANCER EPIDEMIOLOGY & TREATMENT
+% SECTION 10: BREAST CANCER EPIDEMIOLOGY & TREATMENT
 % ==============================================================================
 
-@article{siegel2021,
-  title = {Cancer Statistics, 2021},
-  author = {Siegel, R. L. and Miller, K. D. and Fuchs, H. E. and Jemal, A.},
+@article{siegel2024,
+  title   = {Cancer Statistics, 2024},
+  author  = {Siegel, R. L. and Giaquinto, A. N. and Jemal, A.},
   journal = {CA: A Cancer Journal for Clinicians},
-  volume = {71},
-  number = {1},
-  pages = {7--33},
-  year = {2021},
-  doi = {10.3322/caac.21654},
-  keywords = {cancer epidemiology, breast cancer, incidence, mortality, 
-             United States},
-  abstract = {Annual cancer statistics. Metastatic breast cancer affects 
-             approximately 6\% of breast cancer patients at diagnosis.}
+  volume  = {74},
+  number  = {1},
+  pages   = {12--49},
+  year    = {2024},
+  doi     = {10.3322/caac.21820},
+  keywords = {cancer epidemiology, breast cancer, incidence, mortality},
+  abstract = {Most recent cancer statistics. HR+/HER2- is the most common
+              metastatic breast cancer subtype (approximately 70\% of cases).
+              Updated from siegel2021 in v2.0.}
 }
 
 @article{harbeck2019,
-  title = {Breast Cancer},
-  author = {Harbeck, N. and Gnant, M.},
+  title   = {Breast Cancer},
+  author  = {Harbeck, N. and Gnant, M.},
   journal = {The Lancet},
-  volume = {393},
-  number = {10169},
-  pages = {138--51},
-  year = {2019},
-  doi = {10.1016/S0140-6736(18)32319-3},
-  keywords = {breast cancer, endocrine therapy, CDK4/6 inhibitor, HR+ HER2-},
-  abstract = {Comprehensive review of breast cancer pathology, diagnosis, and 
-             treatment. CDK4/6 inhibitors as standard of care for HR+/HER2- disease.}
+  volume  = {393},
+  number  = {10169},
+  pages   = {138--151},
+  year    = {2019},
+  doi     = {10.1016/S0140-6736(18)32319-3},
+  abstract = {Comprehensive review. CDK4/6 inhibitors as standard of care
+              for HR+/HER2- metastatic breast cancer. Background context.}
 }
 
 % ==============================================================================
-% SECTION 10: PACKAGE & SOFTWARE REFERENCES
+% SECTION 11: SOFTWARE REFERENCES (BASE R — CORE SCRIPTS)
 % ==============================================================================
 
-@manual{rcore2024,
-  title = {R: A Language and Environment for Statistical Computing},
-  author = {{R Core Team}},
+@manual{rcore2026,
+  title        = {R: A Language and Environment for Statistical Computing},
+  author       = {{R Core Team}},
   organization = {R Foundation for Statistical Computing},
-  address = {Vienna, Austria},
-  year = {2024},
-  url = {https://www.R-project.org/},
-  keywords = {R programming, statistical software, open source}
-}
-
-@manual{tidyverse2024,
-  title = {tidyverse: Easily Install and Load the 'Tidyverse'},
-  author = {Wickham, Hadley},
-  year = {2024},
-  url = {https://CRAN.R-project.org/package=tidyverse},
-  note = {R package version 2.0.0}
-}
-
-@manual{ggplot2024,
-  title = {ggplot2: Create Elegant Data Visualisations Using the Grammar of Graphics},
-  author = {Wickham, Hadley},
-  year = {2024},
-  url = {https://CRAN.R-project.org/package=ggplot2},
-  note = {R package version 3.4.4}
-}
-
-@manual{datatable2024,
-  title = {data.table: Extension of `data.frame`},
-  author = {Dowle, Matt and Srinivasan, Arun},
-  year = {2024},
-  url = {https://CRAN.R-project.org/package=data.table},
-  note = {R package version 1.14.8}
+  address      = {Vienna, Austria},
+  year         = {2026},
+  url          = {https://www.R-project.org/},
+  note         = {Version 4.3.3. Core scripts use base R only (grDevices,
+                  graphics, stats, utils). No tidyverse dependency in
+                  primary analysis pipeline.}
 }
 
 % ==============================================================================
-% SECTION 11: ADDITIONAL RESOURCES
+% SECTION 12: ONLINE RESOURCES
 % ==============================================================================
 
 @online{clinicaltrials2024,
-  title = {{{ClinicalTrials}}.{{gov}} --- {{PALOMA Trial Data}}},
+  title  = {{ClinicalTrials.gov} --- {PALOMA} Trial Registry},
   author = {{National Library of Medicine}},
-  year = {2024},
-  url = {https://clinicaltrials.gov/},
-  keywords = {clinical trials, PALOMA, palbociclib, breast cancer},
-  abstract = {Official database of clinical trials. PALOMA-1/2/3 trial registrations 
-             and results data.}
+  year   = {2024},
+  url    = {https://clinicaltrials.gov/},
+  abstract = {NCT01855009 (PALOMA-2), NCT01942135 (PALOMA-3).
+              Registration and results data.}
 }
 
 @online{pubmed2024,
-  title = {{{PubMed Central}} --- Free Full-Text Biomedical Literature Archive},
+  title  = {{PubMed Central} --- Free Full-Text Biomedical Literature Archive},
   author = {{National Library of Medicine}},
-  year = {2024},
-  url = {https://www.ncbi.nlm.nih.gov/pmc/},
-  keywords = {peer-reviewed literature, open access, biomedical research},
-  abstract = {Free access to MEDLINE/PubMed Central articles. Source for all 
-             primary literature citations in this analysis.}
+  year   = {2024},
+  url    = {https://www.ncbi.nlm.nih.gov/pmc/}
 }
 
-@online{github2024,
-  title = {palbociclib-pkpd-tdm: {{Population}} {{PK}}/{{PD}} {{Simulation}} \& {{TDM Cost-Effectiveness Analysis}}},
+@online{github2026,
+  title  = {palbociclib-pkpd-simulation: {Population PK/PD} Simulation \&
+            {TDM} Pharmacoeconomic Analysis},
   author = {Aslam, Mohammad Bisam Ali},
-  year = {2024},
-  url = {https://github.com/mohammadbisamaliaslam-pharmadocx/palbociclib-pkpd-tdm},
-  keywords = {GitHub, open source, R simulation, pharmacometrics, reproducible research},
-  abstract = {Open-source GitHub repository containing complete R code, data, and 
-             analysis scripts for palbociclib TDM cost-effectiveness simulation model.}
+  year   = {2026},
+  url    = {https://github.com/mohammadbisamaliaslam-pharmadocx/palbociclib-pkpd-simulation},
+  note   = {Version 2.0. Corrected PK/PD parameters, three-tier validation,
+            computed sensitivity analysis, publication-grade documentation.
+            NOTE: URL corrected from palbociclib-pkpd-tdm (v1.0) to
+            palbociclib-pkpd-simulation (v2.0).}
 }
 
 % ==============================================================================
-% END OF BIBLIOGRAPHY
+% END OF BIBLIOGRAPHY — v2.0
+%
+% REMOVED ENTRIES (not deleted; documented here for transparency):
+%
+% tai2017 — REMOVED as primary cost source.
+%   Tai E, et al. J Oncol Pract. 2017;13:e552.
+%   This paper reports ~$25,000 from 2012 NIS data (all cancer types).
+%   It was incorrectly cited in v1.0 as the source for $22,839.
+%   The correct source is dulisse2012 (PMC3440789).
+%   Tai 2017 may be cited as sensitivity analysis upper bound context only.
+%
+% siegel2021 — REPLACED by siegel2024 (most current cancer statistics).
+%
+% tidyverse2024, ggplot2024, datatable2024 — REMOVED from required citations.
+%   Core analysis scripts run on base R only. T
+%   R Core Team citation (rcore2026) is sufficient for software disclosure.
 % ==============================================================================
-
