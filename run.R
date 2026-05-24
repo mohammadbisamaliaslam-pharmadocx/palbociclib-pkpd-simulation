@@ -252,7 +252,7 @@ if (exists("NNT") && exists("ARR") && exists("net_savings")) {
 cat("\n")
 cat("==============================================================================\n")
 if (steps_passed == steps_total) {
-  cat(" ✅ ALL STEPS COMPLETE — Ready for manuscript submission\n")
+  cat(" ✅ ALL STEPS COMPLETE\n")
 } else {
   cat(sprintf(" ⚠  %d step(s) failed — review errors above before submitting\n",
               steps_total - steps_passed))
