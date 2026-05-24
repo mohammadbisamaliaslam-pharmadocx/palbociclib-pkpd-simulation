@@ -28,10 +28,10 @@
 #     figures/08_Economic_Summary.png     — 4-panel combined economic figure
 #
 #   DATA:
-#     outputs/08_Cost_Components.csv      — itemised cost breakdown
-#     outputs/08_Budget_Impact.csv        — savings at different cohort sizes
-#     outputs/08_ROI_Analysis.csv         — return on investment table
-#     outputs/08_Economic_Summary.csv     — all key economic metrics
+#     outputs/08_Cost_Components.csv      — itemised cost breakdown.
+#     outputs/08_Budget_Impact.csv        — savings at different cohort sizes.
+#     outputs/08_ROI_Analysis.csv         — return on investment table.
+#     outputs/08_Economic_Summary.csv     — all key economic metrics.
 # ==============================================================================
 
 cat("\n")
